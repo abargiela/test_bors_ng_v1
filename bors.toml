@@ -1,0 +1,5 @@
+status = [
+    "Test lint"
+]
+required_approvals = 0
+timeout_sec = 120

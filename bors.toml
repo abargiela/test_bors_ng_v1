@@ -1,5 +1,5 @@
 status = [
-  "none"
+  "Lint/Run linters"
 ]
 required_approvals = 0
 timeout_sec = 120

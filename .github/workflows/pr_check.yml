@@ -1,5 +1,10 @@
-on: issue_comment
-name: Issue Comments
+name: PR to k8s
+
+on:
+  pull_request:
+    types: [opened]
+  issue_comment:
+    types: [created]
 
 
 jobs:

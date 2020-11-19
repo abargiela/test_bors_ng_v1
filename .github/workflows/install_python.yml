@@ -21,6 +21,9 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
+    - name: install pyenv
+      run: apt-get install pyenv 
+      
     - name: Create virtualenv for python ${{ matrix.python }}
       run: pyenv local ${{ matrix.python }} && python3 -mvenv .venv-${{ matrix.python }}
 

@@ -31,10 +31,11 @@ jobs:
     - name: Create virtualenv for python ${{ matrix.python-version }}
       run: python -m venv venv-${{ matrix.python-version }} &&  ./venv-${{ matrix.python-version }}/bin/activate
 
-    - name: check pip cache 
-      run: ls ./venv-${{ matrix.python-version }}/.cache && pwd 
     - name: Install dependencies
       working-directory: ./xa/python
       run: pip3 install -r requirements.txt
 
+
+    - name: check pip cache 
+      run: ls ./venv-${{ matrix.python-version }}/.cache && pwd 
 

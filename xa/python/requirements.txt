@@ -1,1 +1,2 @@
 test-pip-install
+transformers >= 3.4

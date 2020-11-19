@@ -34,7 +34,7 @@ jobs:
       run: python -V
 
     - name: Create virtualenv for python ${{ matrix.python-version }}
-      run: python -m venv venv-${{ matrix.python-version }} 
+      run: python -m venv venv-${{ matrix.python-version }} && ls -lahS venv-${{ matrix.python-version }} 
     - name: Active venv 
       run:   bash ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/activate 
     - name: test venv 

@@ -37,5 +37,5 @@ jobs:
 
 
     - name: check pip cache 
-      run: ls ~/.cache/pip && pwd  && ls -lahS ~/.cache/pip
+      run: ls ~/.cache/pip && pwd  && ls -lahSr ~/.cache/pip
 

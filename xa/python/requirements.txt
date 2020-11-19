@@ -1,7 +1,1 @@
-numpy >= 1.19
-onnx >= 1.8
-onnxruntime >= 1.5
-psutil >= 5.7
 torch >= 1.7
-transformers >= 3.4
-tqdm >= 4.51

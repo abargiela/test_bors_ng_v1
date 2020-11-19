@@ -34,3 +34,6 @@ jobs:
     - name: Install dependencies
       working-directory: ./xa/python
       run: ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/pip3 install -r requirements.txt
+
+    - name: test VIRTUALENVWRAPPER_PYTHON
+      run: echo $VIRTUALENVWRAPPER_PYTHON

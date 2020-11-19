@@ -38,11 +38,11 @@ jobs:
     - name: Active venv 
       run:   bash -x  ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/activate 
     - name: test venv 
-      run: pip3 -V
+      run: ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/pip3 -V
 
     - name: Install dependencies
       working-directory: ./xa/python
-      run: pip3 install -r requirements.txt
+      run: ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/pip3 install -r requirements.txt
 
     - name: pip v 
-      run: pip3 -V
+      run: ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/pip3 -V

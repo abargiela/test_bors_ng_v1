@@ -27,17 +27,10 @@ jobs:
 
     - name: python version 
       run: python -V
-#    - name: install pyenv
-#      run: sudo apt-get install pyenv 
-#
-#    - name: Create virtualenv for python ${{ matrix.python }}
-#      run: pyenv local ${{ matrix.python }} && python3 -mvenv .venv-${{ matrix.python }}
 
-#    - name: Install dependencies
-#      run: pip install -r requirements.txt
-#    - name: Create virtualenv for python ${{ matrix.python-version }}
-#      run: pyenv local ${{ matrix.python }} && python3 -mvenv .venv-${{ matrix.python-version }}
-#
-#    - name: Install dependencies
-#      working-directory: ./xa/python
-#      run: pip3 install -r requirements.txt
+    - name: Create virtualenv for python ${{ matrix.python }}
+      run: python -m venv venv-${{ matrix.python }} &&  ./venv-${{ matrix.python }}/bin/activate
+
+    - name: Install dependencies
+      working-directory: ./xa/python
+      run: pip3 install -r requirements.txt

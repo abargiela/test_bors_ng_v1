@@ -24,7 +24,7 @@ jobs:
 
     - name: teste 
       run: ls ~/.cache ; ls ~/.cache/pip 
-      
+
     - uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
@@ -32,4 +32,3 @@ jobs:
     - name: Install dependencies
       working-directory: ./xa/python
       run: pip3 install -r requirements.txt
-

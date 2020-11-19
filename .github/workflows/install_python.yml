@@ -39,3 +39,6 @@ jobs:
     - name: Install dependencies
       working-directory: ./xa/python
       run: pip3 install -r requirements.txt
+
+    - name: pip v 
+      run: pip3 -V

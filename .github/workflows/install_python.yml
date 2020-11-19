@@ -18,7 +18,7 @@ jobs:
       with:
         path: |
           ~/.cache/pip
-          ./venv-${{ matrix.python-version }}/bin
+          ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-

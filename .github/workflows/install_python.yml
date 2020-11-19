@@ -31,6 +31,8 @@ jobs:
     - name: Create virtualenv for python ${{ matrix.python }}
       run: python -m venv venv-${{ matrix.python }} &&  ./venv-${{ matrix.python }}/bin/activate
 
+    - name: check pip cache 
+      run: ls ./venv-${{ matrix.python }}/.cache && pwd 
     - name: Install dependencies
       working-directory: ./xa/python
       run: pip3 install -r requirements.txt

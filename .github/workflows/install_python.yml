@@ -16,7 +16,9 @@ jobs:
 
     - uses: actions/cache@v2
       with:
-        path: ~/.cache/pip
+        path: |
+          ~/.cache/pip
+          ./venv-${{ matrix.python-version }}/bin
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
@@ -34,8 +36,4 @@ jobs:
     - name: Install dependencies
       working-directory: ./xa/python
       run: pip3 install -r requirements.txt
-
-
-    - name: check pip cache 
-      run: ls ~/.cache/pip && pwd  && ls -lahSr ~/.cache/pip
 

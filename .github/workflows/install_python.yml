@@ -23,6 +23,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
+    - name: test 
+      run: ls ${GITHUB_WORKSPACE} && echo ${GITHUB_WORKSPACE}
     - uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}

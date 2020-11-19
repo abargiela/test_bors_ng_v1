@@ -34,7 +34,11 @@ jobs:
       run: python -V
 
     - name: Create virtualenv for python ${{ matrix.python-version }}
-      run: python -m venv venv-${{ matrix.python-version }} &&  bash ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/activate  && pip3 -V
+      run: python -m venv venv-${{ matrix.python-version }} 
+    - name: Active venv 
+      run:   bash ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/activate 
+    - name: test venv 
+      run: pip3 -V
 
     - name: Install dependencies
       working-directory: ./xa/python

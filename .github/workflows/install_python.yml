@@ -37,5 +37,5 @@ jobs:
 
 
     - name: check pip cache 
-      run: ls ./venv-${{ matrix.python-version }}/.cache && pwd 
+      run: ls ~/.cache/pip && pwd  && ls -lahS ~/.cache/pip
 

@@ -18,18 +18,13 @@ jobs:
       with:
         path: |
           ~/.cache/pip
-          ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
-          ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin
 
     - uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-
-#    - name: Create virtualenv for python ${{ matrix.python-version }}
-#      run: python -m venv venv-${{ matrix.python-version }}
 
     - name: Install dependencies
       working-directory: ./xa/python

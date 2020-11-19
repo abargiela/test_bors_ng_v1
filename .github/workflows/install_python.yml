@@ -24,27 +24,13 @@ jobs:
           ${{ runner.os }}-pip-
           ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin
 
-    - name: test 
-      run: ls ${GITHUB_WORKSPACE} && echo ${GITHUB_WORKSPACE}
     - uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: python version 
-      run: python -V
-
     - name: Create virtualenv for python ${{ matrix.python-version }}
-      run: python -m venv venv-${{ matrix.python-version }} && ls -lahS venv-${{ matrix.python-version }}/bin/
-    - name: Active venv 
-      run:   bash -x ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/activate 
-    - name: test venv 
-      run: echo $PATH
-    - name: run pip3 
-      run: ls ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/pip3
+      run: python -m venv venv-${{ matrix.python-version }}
 
     - name: Install dependencies
       working-directory: ./xa/python
-      run: pip3 install -r requirements.txt
-
-    - name: pip v 
-      run: pip3 -V
+      run: ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/pip3 install -r requirements.txt

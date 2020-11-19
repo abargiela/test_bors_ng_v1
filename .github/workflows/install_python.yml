@@ -36,13 +36,15 @@ jobs:
     - name: Create virtualenv for python ${{ matrix.python-version }}
       run: python -m venv venv-${{ matrix.python-version }} && ls -lahS venv-${{ matrix.python-version }}/bin/
     - name: Active venv 
-      run:   bash -x  ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/activate 
+      run:   bash -x ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/activate 
     - name: test venv 
-      run: ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/pip3 -V
+      run: echo $PATH
+    - name: run pip3 
+      run: ls ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/pip3
 
     - name: Install dependencies
       working-directory: ./xa/python
-      run: ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/pip3 install -r requirements.txt
+      run: pip3 install -r requirements.txt
 
     - name: pip v 
-      run: ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/pip3 -V
+      run: pip3 -V

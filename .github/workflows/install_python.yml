@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python:
-          - 3.7.5
+        python-version: [3.8]
+
     steps:
     - uses: actions/checkout@v2
 
@@ -21,8 +21,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
-    - name: pyenv 
-      run: pyenv
+
 #    - name: install pyenv
 #      run: sudo apt-get install pyenv 
 #

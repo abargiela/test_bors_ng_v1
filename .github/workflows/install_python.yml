@@ -28,12 +28,9 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Create virtualenv for python ${{ matrix.python-version }}
-      run: python -m venv venv-${{ matrix.python-version }}
+#    - name: Create virtualenv for python ${{ matrix.python-version }}
+#      run: python -m venv venv-${{ matrix.python-version }}
 
     - name: Install dependencies
       working-directory: ./xa/python
-      run: ${GITHUB_WORKSPACE}/venv-${{ matrix.python-version }}/bin/pip3 install -r requirements.txt
-
-    - name: test VIRTUALENVWRAPPER_PYTHON
-      run: echo $VIRTUALENVWRAPPER_PYTHON
+      run: pip3 install -r requirements.txt

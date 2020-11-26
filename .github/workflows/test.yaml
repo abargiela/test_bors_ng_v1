@@ -22,6 +22,10 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: my-artifact
+      - name: 'Tar files'
+        working-directory: /home/runner/work/test_bors/test_bors
+        run: tar -czf my_artifact.tar.gz /home/runner/work/test_bors/test_bors/
+
       - name: Display structure of downloaded files
         working-directory: /home/runner/work/test_bors/test_bors
         run: ls -R

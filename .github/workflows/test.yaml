@@ -14,17 +14,26 @@ jobs:
 
       - name: create a file
         run: mkdir /tmp/test/; echo 'test123' > /tmp/test/file_test1.txt
+      - uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: /tmp/test/file_test1.txt
 
-      - uses: secrethub/actions/env-export@v0.1.0
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+      - name: Display structure of downloaded files
+        run: ls -R
+      #- uses: secrethub/actions/env-export@v0.1.0
+      #  env:
+      #    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: upload file to the bucket
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          BUCKET: ${{ secrets.BUCKET }}
-          BUCKET_ENDPOINT: ${{ secrets.BUCKET_ENDPOINT }}
-          working_directory: /tmp
-        run: aws s3api put-object --key test/file_test1.txt --endpoint=$BUCKET_ENDPOINT --bucket $BUCKET
+      #- name: upload file to the bucket
+      #  env:
+      #    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #    BUCKET: ${{ secrets.BUCKET }}
+      #    BUCKET_ENDPOINT: ${{ secrets.BUCKET_ENDPOINT }}
+      #    working_directory: /tmp
+      #  run: aws s3api put-object --key test/file_test1.txt --endpoint=$BUCKET_ENDPOINT --bucket $BUCKET

@@ -23,6 +23,7 @@ jobs:
         with:
           name: my-artifact
       - name: Display structure of downloaded files
+        working-directory: /home/runner/work/test_bors/test_bors
         run: ls -R
       #- uses: secrethub/actions/env-export@v0.1.0
       #  env:

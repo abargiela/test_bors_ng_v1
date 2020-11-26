@@ -14,6 +14,7 @@ jobs:
 
       - name: create a file
         run: mkdir /tmp/test/; echo 'test123' > /tmp/test/file_test1.txt
+
       - uses: actions/upload-artifact@v2
         with:
           name: my-artifact
@@ -23,11 +24,11 @@ jobs:
         with:
           name: my-artifact
       - name: 'Tar files'
-        working-directory: /home/runner/work/test_bors/test_bors
-        run: tar -czf my_artifact.tar.gz /home/runner/work/test_bors/test_bors/
+        working-directory: /tmp/
+        run: tar -czf my_artifact.tar.gz test/
 
       - name: Display structure of downloaded files
-        working-directory: /home/runner/work/test_bors/test_bors
+        working-directory: /tmp/
         run: ls -R
       #- uses: secrethub/actions/env-export@v0.1.0
       #  env:

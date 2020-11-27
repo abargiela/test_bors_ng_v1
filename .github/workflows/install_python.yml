@@ -2,6 +2,8 @@ name: sanity checks
 
 on:
   push:
+    branches: 
+      - old
 
 jobs:
   my_python_job:

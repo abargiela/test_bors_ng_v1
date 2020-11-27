@@ -1,0 +1,22 @@
+name: copy repo
+
+on:
+  push:
+
+jobs:
+  copy_repo:
+    name: copy-repo
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Copy
+        uses: andstor/copycat-action@v3
+        with:
+          personal_token: ${{ secrets.BORS }}
+          src_path: ./xa
+          dst_path: /xa
+          dst_owner: abargiela
+          dst_repo_name: test_bors_ng

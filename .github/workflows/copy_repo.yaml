@@ -20,3 +20,5 @@ jobs:
           dst_path: /xa
           dst_owner: abargiela
           dst_repo_name: test_bors_ng
+          src_branch: main
+          dst_branch: main

@@ -22,7 +22,7 @@ jobs:
             path: artifact/world.txt
 
         - name: check folder
-          run: ls -lahS artifact && pwd
+          run: ls -lahS artifact && cd artifact && pwd
 
         - name: Copy
           uses: andstor/copycat-action@v3

@@ -26,7 +26,7 @@ jobs:
           env:
             API_TOKEN_GITHUB: ${{ secrets.BORS }}
           with:
-            source_file: '/'
+            source_file: '.*'
             destination_repo: 'abargiela/test_bors_ng_copy'
             destination_folder: '/'
             user_email: 'abargiela@gmail.com'

@@ -33,3 +33,4 @@ jobs:
             user_name: 'abargiela'
             commit_message: 'A custom message for the commit'
             destination_branch: main
+

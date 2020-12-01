@@ -21,9 +21,6 @@ jobs:
             name: artifact_test
             path: artifact_test/world.txt
 
-        - name: check folder
-          run: ls -lahS ../; ls -lahS ../../; ls -lahS artifact_test && cd artifact_test && pwd
-
         - name: Copy
           uses: andstor/copycat-action@v3
           with:

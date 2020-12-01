@@ -30,14 +30,3 @@ jobs:
         #          dst_repo_name: test_bors_ng_copy
         #          src_branch: main
         #          dst_branch: main
-
-name: delete branch
-
-on:
-    pull_request:
-    type: closed
-
-        uses: SvanBoxel/delete-merged-branch@main
-            #env:
-            #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-

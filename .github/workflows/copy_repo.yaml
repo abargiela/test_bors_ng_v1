@@ -18,18 +18,18 @@ jobs:
 
         - uses: actions/upload-artifact@v2
           with:
-            name: my-artifact
-            path: artifact/world.txt
+            name: artifact_test
+            path: artifact_test/world.txt
 
         - name: check folder
-          run: ls -lahS artifact && cd artifact && pwd
+          run: ls -lahS ../; ls -lahS ../../; ls -lahS artifact_test && cd artifact_test && pwd
 
         - name: Copy
           uses: andstor/copycat-action@v3
           with:
             personal_token: ${{ secrets.BORS }}
             src_path: /.
-            dst_path: /backup/
+            dst_path: /backup2/
             dst_owner: abargiela
             dst_repo_name: test_bors_ng_copy
             src_branch: main

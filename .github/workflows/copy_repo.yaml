@@ -25,7 +25,7 @@ jobs:
           uses: andstor/copycat-action@v3
           with:
             personal_token: ${{ secrets.BORS }}
-            src_path: /.
+            src_path: $GITHUB_WORKSPACE
             dst_path: /backup2/
             dst_owner: abargiela
             dst_repo_name: test_bors_ng_copy

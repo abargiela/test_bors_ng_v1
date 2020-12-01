@@ -24,17 +24,11 @@ jobs:
         - name: check folder
           run: ls -lahS artifact && cd artifact && pwd
 
-        - name: Copy
-          uses: andstor/copycat-action@v3
-          with:
-             personal_token: ${{ secrets.BORS }}
-             src_path: /.
-             dst_path: /artifact/
-             dst_owner: abargiela
-             dst_repo_name: test_bors_ng_copy
-             src_branch: main
-             dst_branch: main
-
-        - name: check folder2
-          run: ls -lahS artifact && cd artifact && pwd
-
+        - name: copy files
+          run: |
+            git clone https://.:${{ secrets.BORS }}@github.com/abargiela/test_bors_ng_copy.git target
+            rm target
+            cp .* target/
+            git add target
+            git commit -m "Automatic publish from github.com/prject"
+            git push target master

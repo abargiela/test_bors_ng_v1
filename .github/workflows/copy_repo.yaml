@@ -9,19 +9,28 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 70
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+        - name: Checkout
+          uses: actions/checkout@v2
 
-      - name: Copy
-        uses: andstor/copycat-action@v3
-        with:
-          personal_token: ${{ secrets.BORS }}
-          src_path: ./
-          dst_path: /
-          dst_owner: abargiela
-          dst_repo_name: test_bors_ng_copy
-          src_branch: main
-          dst_branch: main
+        - name: copy
+          run: |
+              #git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/project target
+             git clone https://github.com/test_bors_ng_copy target
+             rm -rf target/*
+             copy .* target/
+             git add target
+             git commit -m "Automatic publish from github.com/prject"
+             git push target master
+        #      - name: Copy
+        #        uses: andstor/copycat-action@v3
+        #        with:
+        #          personal_token: ${{ secrets.BORS }}
+        #          src_path: ./
+        #          dst_path: /
+        #          dst_owner: abargiela
+        #          dst_repo_name: test_bors_ng_copy
+        #          src_branch: main
+        #          dst_branch: main
 
 name: delete branch
 

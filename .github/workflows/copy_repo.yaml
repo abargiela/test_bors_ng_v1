@@ -22,3 +22,12 @@ jobs:
           dst_repo_name: test_bors_ng_copy
           src_branch: main
           dst_branch: main
+
+name: delete branch
+
+on:
+    type: deleted
+    branches: test 
+
+    - name: remove branch
+      run: echo ok

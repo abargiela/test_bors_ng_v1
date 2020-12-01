@@ -34,3 +34,7 @@ jobs:
              dst_repo_name: test_bors_ng_copy
              src_branch: main
              dst_branch: main
+
+        - name: check folder2
+          run: ls -lahS artifact && cd artifact && pwd
+

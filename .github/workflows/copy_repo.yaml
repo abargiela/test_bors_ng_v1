@@ -24,10 +24,9 @@ jobs:
         - name: check folder
           run: ls -lahS artifact && cd artifact && pwd
 
-        - uses: olivr/copybara-action@v1.2.2
-          with:
-            ssh_key: ${{ secrets.SSH_KEY }}
-            access_token: ${{ secrets.BORS }}
-            sot_repo: git@github.com:abargiela/test_bors.git
-            destination_repo: git@github.com:abargiela/test_bors_ng_copy.git
-            workflow: push
+      - uses: wearerequired/git-mirror-action@v1
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+        with:
+          source-repo: 'git@github.com:abargiela/test_bors.git'
+          destination-repo: 'git@github.com:abargiela/test_bors_ng_copy.git'

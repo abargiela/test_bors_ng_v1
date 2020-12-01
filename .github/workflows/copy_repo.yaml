@@ -26,7 +26,7 @@ jobs:
 
       - uses: olivr/copybara-action@v1.2.2
         with:
-          ssh_key: ${{ secrets.SSH_KEY }}
-          access_token: ${{ secrets.BORS }}
-          sot_repo: git@github.com:abargiela/test_bors.git
-          destination_repo: git@github.com:abargiela/test_bors_ng_copy.git
+            ssh_key: ${{ secrets.SSH_KEY }}
+            access_token: ${{ secrets.BORS }}
+            sot_repo: git@github.com:abargiela/test_bors.git
+            destination_repo: git@github.com:abargiela/test_bors_ng_copy.git

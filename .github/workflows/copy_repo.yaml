@@ -12,14 +12,14 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
 
-        - run: mkdir -p path/to/artifact
+        - run: mkdir -p artifact
 
-        - run: echo hello > world.txt
+        - run: echo hello > artifact/world.txt
 
         - uses: actions/upload-artifact@v2
           with:
             name: my-artifact
-            path: world.txt
+            path: artifact/world.txt
 
         - name: Copy
           uses: andstor/copycat-action@v3

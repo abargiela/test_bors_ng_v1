@@ -12,12 +12,22 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
 
-        - name: copy
-          run: |
-             git clone https://.:${{ secrets.BORS }}@github.com/abargiela/test_bors.git target
-             git clone git@github.com:abargiela/test_bors_ng_copy.git tmp_files
-             rm -rf tmp_files/*
-             copy .* tmp_files/
-             git add tmp_files
-             git commit -m "Automatic publish from github.com/prject"
-             git push target master
+		- run: mkdir -p path/to/artifact
+
+		- run: echo hello > world.txt
+
+		- uses: actions/upload-artifact@v2
+  		  with:
+    		name: my-artifact
+    		path: world.txt
+
+        - name: Copy
+          uses: andstor/copycat-action@v3
+          with:
+             personal_token: ${{ secrets.BORS }}
+             src_path: ./
+             dst_path: /
+             dst_owner: abargiela
+             dst_repo_name: test_bors_ng_copy
+             src_branch: main
+             dst_branch: main

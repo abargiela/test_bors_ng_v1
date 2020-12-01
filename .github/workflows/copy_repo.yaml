@@ -28,7 +28,7 @@ jobs:
           uses: andstor/copycat-action@v3
           with:
              personal_token: ${{ secrets.BORS }}
-             src_path: artifact
+             src_path: /home/runner/work/test_bors/test_bors/artifact
              dst_path: /
              dst_owner: abargiela
              dst_repo_name: test_bors_ng_copy

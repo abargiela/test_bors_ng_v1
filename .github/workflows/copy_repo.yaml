@@ -14,7 +14,7 @@ jobs:
 
         - name: copy
           run: |
-             git clone https://github.com/test_bors_ng_copy target
+             git clone git@github.com:abargiela/test_bors_ng_copy.git target 
              rm -rf target/*
              copy .* target/
              git add target

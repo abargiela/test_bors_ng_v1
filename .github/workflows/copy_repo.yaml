@@ -21,13 +21,14 @@ jobs:
             name: artifact_test
             path: artifact_test/world.txt
 
-        - name: Copy
-          uses: andstor/copycat-action@v3
+        - name: Pushes test file
+          uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
+          env:
+            API_TOKEN_GITHUB: ${{ secrets.BORS }}
           with:
-            personal_token: ${{ secrets.BORS }}
-            src_path: artifact_test
-            dst_path: /backup2/
-            dst_owner: abargiela
-            dst_repo_name: test_bors_ng_copy
-            src_branch: main
-            dst_branch: main
+            source_file: 'artifact_test'
+            destination_repo: 'abargiela/test_bors_ng_copy'
+            destination_folder: 'artifact_test'
+            user_email: 'abargiela@gmail.com'
+            user_name: 'abargiela'
+            commit_message: 'A custom message for the commit'

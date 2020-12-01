@@ -14,7 +14,6 @@ jobs:
 
         - name: copy
           run: |
-              #git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/project target
              git clone https://github.com/test_bors_ng_copy target
              rm -rf target/*
              copy .* target/

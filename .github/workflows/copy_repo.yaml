@@ -12,9 +12,9 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
 
-        - run: mkdir -p artifact
+        - run: mkdir -p artifact_test
 
-        - run: echo hello > artifact/world.txt
+        - run: echo hello > artifact_test/world.txt
 
         - uses: actions/upload-artifact@v2
           with:
@@ -25,7 +25,7 @@ jobs:
           uses: andstor/copycat-action@v3
           with:
             personal_token: ${{ secrets.BORS }}
-            src_path: test_bors
+            src_path: artifact_test
             dst_path: /backup2/
             dst_owner: abargiela
             dst_repo_name: test_bors_ng_copy

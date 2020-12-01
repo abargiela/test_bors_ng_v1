@@ -24,8 +24,8 @@ jobs:
         - name: check folder
           run: ls -lahS artifact && cd artifact && pwd
 
-      - uses: olivr/copybara-action@v1.2.2
-        with:
+        - uses: olivr/copybara-action@v1.2.2
+          with:
             ssh_key: ${{ secrets.SSH_KEY }}
             access_token: ${{ secrets.BORS }}
             sot_repo: git@github.com:abargiela/test_bors.git

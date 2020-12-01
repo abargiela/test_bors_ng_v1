@@ -26,8 +26,10 @@ jobs:
 name: delete branch
 
 on:
-    type: deleted
-    branches: test 
+    pull_request:
+    type: closed
 
-    - name: remove branch
-      run: echo ok
+        uses: SvanBoxel/delete-merged-branch@main
+            #env:
+            #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

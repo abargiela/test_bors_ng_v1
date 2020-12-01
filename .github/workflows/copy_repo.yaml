@@ -27,8 +27,7 @@ jobs:
         - name: copy files
           run: |
             git clone https://.:${{ secrets.BORS }}@github.com/abargiela/test_bors_ng_copy.git target
-            rm -rf target/*
-            cp -r .* target/ --exclude .git 
+            cp -r artifact target/
             git add target
             git commit -m "Automatic publish from github.com/prject"
             git push target master

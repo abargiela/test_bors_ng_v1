@@ -16,7 +16,6 @@ jobs:
 
         - run: echo hello > artifact_test/world.txt
         - run: echo hello2 >> artifact_test/world.txt
-        - run: echo hello3 > artifact_test/world2.txt
 
         - uses: actions/upload-artifact@v2
           with:

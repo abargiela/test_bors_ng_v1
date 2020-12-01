@@ -24,9 +24,9 @@ jobs:
         - name: check folder
           run: ls -lahS artifact && cd artifact && pwd
 
-      - uses: wearerequired/git-mirror-action@v1
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
-        with:
-          source-repo: 'git@github.com:abargiela/test_bors.git'
-          destination-repo: 'git@github.com:abargiela/test_bors_ng_copy.git'
+        - uses: wearerequired/git-mirror-action@v1
+          env:
+            SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+          with:
+            source-repo: 'git@github.com:abargiela/test_bors.git'
+            destination-repo: 'git@github.com:abargiela/test_bors_ng_copy.git'

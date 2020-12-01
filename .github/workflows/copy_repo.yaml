@@ -24,10 +24,13 @@ jobs:
         - name: check folder
           run: ls -lahS artifact && cd artifact && pwd
 
-        - uses: wearerequired/git-mirror-action@v1
-          env:
-            SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+        - name: Copy
+          uses: andstor/copycat-action@v3
           with:
-            source-repo: 'git@github.com:abargiela/test_bors.git'
-            destination-repo: 'git@github.com:abargiela/test_bors_ng_copy.git'
-
+            personal_token: ${{ secrets.BORS }}
+            src_path: /.
+            dst_path: /backup/
+            dst_owner: abargiela
+            dst_repo_name: test_bors_ng_copy
+            src_branch: main
+            dst_branch: main

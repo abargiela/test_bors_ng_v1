@@ -12,9 +12,9 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
 
-		- run: mkdir -p path/to/artifact
+        - run: mkdir -p path/to/artifact
 
-		- run: echo hello > world.txt
+        - run: echo hello > world.txt
 
 		- uses: actions/upload-artifact@v2
   		  with:

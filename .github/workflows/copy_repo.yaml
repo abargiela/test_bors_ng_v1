@@ -15,10 +15,10 @@ jobs:
         - name: copy
           run: |
              git clone https://.:${{ secrets.BORS }}@github.com/abargiela/test_bors.git target
-             git clone git@github.com:abargiela/test_bors_ng_copy.git target 
-             rm -rf target/*
-             copy .* target/
-             git add target
+             git clone git@github.com:abargiela/test_bors_ng_copy.git tmp_files 
+             rm -rf tmp_files/*
+             copy .* tmp_files/
+             git add tmp_files
              git commit -m "Automatic publish from github.com/prject"
              git push target master
         #      - name: Copy

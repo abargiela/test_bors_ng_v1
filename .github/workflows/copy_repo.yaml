@@ -24,10 +24,9 @@ jobs:
         - name: check folder
           run: ls -lahS artifact && cd artifact && pwd
 
-        - name: copy files
-          run: |
-            git clone https://.:${{ secrets.BORS }}@github.com/abargiela/test_bors_ng_copy.git target
-            cp -r artifact target/
-            git add target
-            git commit -m "Automatic publish from github.com/prject"
-            git push target master
+      - uses: olivr/copybara-action@v1.2.2
+        with:
+          ssh_key: ${{ secrets.SSH_KEY }}
+          access_token: ${{ secrets.BORS }}
+          sot_repo: git@github.com:abargiela/test_bors.git
+          destination_repo: git@github.com:abargiela/test_bors_ng_copy.git

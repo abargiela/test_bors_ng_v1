@@ -30,3 +30,4 @@ jobs:
             access_token: ${{ secrets.BORS }}
             sot_repo: git@github.com:abargiela/test_bors.git
             destination_repo: git@github.com:abargiela/test_bors_ng_copy.git
+            workflow: push

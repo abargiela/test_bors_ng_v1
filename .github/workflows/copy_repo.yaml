@@ -34,7 +34,7 @@ jobs:
           with:
             personal_token: ${{ secrets.BORS }}
             src_path: /.
-            dst_path: /
+            dst_path: /teste123
             dst_owner: abargiela
             dst_repo_name: test_bors_ng_copy
             src_branch: main

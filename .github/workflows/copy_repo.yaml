@@ -39,13 +39,14 @@ jobs:
             fi
             cd - ; cp -a *  $CLONE_DIR; cd $CLONE_DIR
 
-            git add . 
+            git add .
             if git status | grep -q "nothing to commit"; then
                 echo "Everything is up to date ";
             else
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
-                git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
-            fi 
+                #git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
+                git push -u origin ${{ steps.current_branch.outputs.branch }}
+            fi
 
 #        - name: Copy repository
 #          uses: dmnemec/copy_file_to_another_repo_action@v1.0.4

@@ -48,9 +48,8 @@ jobs:
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
                 echo 2
                 git remote -v 
-                git config --global --unset credential.helper
-                git config credential.helper store
-                git push -u origin HEAD:${{ steps.current_branch.outputs.branch }} 
+                git push -u origin main 
+                # HEAD:${{ steps.current_branch.outputs.branch }} 
                 echo 3
                 git remote -v 
             fi

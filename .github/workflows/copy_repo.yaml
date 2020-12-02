@@ -44,7 +44,7 @@ jobs:
 
             cd - ; cp -a *  $CLONE_DIR; cd $CLONE_DIR
 
-            git add
+            git add .
             if git status | grep -q "nothing to commit"; then
                 echo "Everything is up to date ";
             else

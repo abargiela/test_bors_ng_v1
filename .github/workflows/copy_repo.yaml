@@ -33,14 +33,12 @@ jobs:
             git config --global user.email "abargiela@gmail.com"
             git config --global user.name "abargiela"
             git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://x-access-token:${{ secrets.API_TOKEN_GITHUB }}@github.com/abargiela/test_bors_ng_copy.git" ci_clone
-            pwd 
             cd ci_clone 
-            pwd
             if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then
                 git checkout -b ${{ steps.current_branch.outputs.branch }}
             fi
-            pwd
-            cp -a ../* ci_clone/ 
+
+            cp -a ../* .
 #
 #            git add . 
 #            git commit -m "Automatic publish from github.com/prject"

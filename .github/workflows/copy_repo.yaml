@@ -10,11 +10,7 @@ jobs:
     timeout-minutes: 70
     steps:
 
-        - uses: actions/checkout@v1
-
-        - run: npm ci
-
-        - uses: nelonoel/branch-name@v1.0.1
+        - uses: actions/checkout@v2
 
         - run: mkdir -p artifact_test
 
@@ -37,5 +33,5 @@ jobs:
             user_email: 'abargiela@gmail.com'
             user_name: 'abargiela'
             commit_message: 'A custom message for the commit'
-            destination_branch: ${BRANCH_NAME}
-            destination_branch_create: ${BRANCH_NAME}
+            destination_branch: $GITHUB_REF
+            destination_branch_create: $GITHUB_REF

@@ -50,9 +50,8 @@ jobs:
             if git status | grep -q "nothing to commit"; then
                 echo "Everything is up to date ";
             else
-                GIT_TRACE=1 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
-                GIT_TRACE=1 git remote rm origin
-                GIT_TRACE=1 git remote add origin https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git/
+                git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
+                git remote set-url origin  https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git/
                 GIT_TRACE=1  git push --set-upstream origin ${{ steps.current_branch.outputs.branch }}
 
 

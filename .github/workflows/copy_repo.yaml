@@ -32,6 +32,6 @@ jobs:
             user_email: 'abargiela@gmail.com'
             user_name: 'abargiela'
             commit_message: 'A custom message for the commit'
-            destination_branch: ${env.GITHUB_BASE_REF}
-            destination_branch_create: ${env.GITHUB_BASE_REF}
+            destination_branch: ${GITHUB_BASE_REF}
+            destination_branch_create: ${GITHUB_BASE_REF}
 

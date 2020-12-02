@@ -42,3 +42,4 @@ jobs:
             commit_message: 'A custom message for the commit'
             destination_branch: ${{ env.GITHUB_BASE_REF }}
             destination_branch_create: ${{ env.GITHUB_BASE_REF }}
+

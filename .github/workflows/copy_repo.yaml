@@ -26,15 +26,22 @@ jobs:
           run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
           id: current_branch
 
-        - uses: olivr/copybara-action@v1.2.2
-          with:
-            ssh_key: ${{ secrets.SSH_KEY }}
-            access_token: ${{ secrets.BORS }}
-            sot_repo: git@github.com:abargiela/test_bors.git
-            destination_repo: git@github.com:abargiela/test_bors_ng_copy.git
-            sot_branch: ${{ steps.current_branch.outputs.branch }}
-            destination_branch: ${{ steps.current_branch.outputs.branch }}
-            workflow: push
+        - name: copy repo
+          run: |
+
+            git config --global user.email "abargiela@gmail.com"
+            git config --global user.name "abargiela"
+            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://x-access-token:$API_TOKEN_GITHUB@github.com/abargriela/test_bors_ng_copy.git" dst_repo 
+
+            rm -rf dst_repo/
+            cd dst_repo
+            git checkout -b ${{ steps.current_branch.outputs.branch }}
+            cp -R ../* ../.gitignore .
+
+            git add . 
+            git commit -m "Automatic publish from github.com/prject"
+            git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
+
 
 #        - name: Copy repository
 #          uses: dmnemec/copy_file_to_another_repo_action@v1.0.4

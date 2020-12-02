@@ -29,6 +29,7 @@ jobs:
         - name: copy repo
           shell: bash
           run: |
+            set -e
             CLONE_DIR=$(mktemp -d)
 
             git config --global user.email "abargiela@gmail.com"

@@ -39,8 +39,8 @@ jobs:
             if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then
                 git checkout -b ${{ steps.current_branch.outputs.branch }}
             fi
-#
-#            cp -R ../* ci_clone 
+
+            cp -R ../* ci_clone/ 
 #
 #            git add . 
 #            git commit -m "Automatic publish from github.com/prject"

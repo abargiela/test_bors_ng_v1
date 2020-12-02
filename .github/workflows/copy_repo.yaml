@@ -34,6 +34,7 @@ jobs:
             destination_repo: git@github.com:abargiela/test_bors_ng_copy.git
             sot_branch: ${{ steps.current_branch.outputs.branch }}
             destination_branch: ${{ steps.current_branch.outputs.branch }}
+            workflow: push
 
 #        - name: Copy repository
 #          uses: dmnemec/copy_file_to_another_repo_action@v1.0.4

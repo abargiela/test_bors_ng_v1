@@ -33,9 +33,9 @@ jobs:
             git config --global user.email "abargiela@gmail.com"
             git config --global user.name "abargiela"
             git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://x-access-token:${{ secrets.API_TOKEN_GITHUB }}@github.com/abargiela/test_bors_ng_copy.git" ci_clone
-
+            ls 
             cd ci_clone 
-
+            ls
 #            if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then
 #                git checkout -b ${{ steps.current_branch.outputs.branch }}
 #            fi

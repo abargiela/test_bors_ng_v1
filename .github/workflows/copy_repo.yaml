@@ -29,7 +29,7 @@ jobs:
         - name: copy repo
           run: |
             #CLONE_DIR="$(mktemp -d)"
-            CLONE_DIR="$(mkdir tmp)"
+            CLONE_DIR=$(mkdir ./tmp)
 
             git config --global user.email "abargiela@gmail.com"
             git config --global user.name "abargiela"

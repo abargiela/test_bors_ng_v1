@@ -34,20 +34,19 @@ jobs:
 
         - name: copy repo
           run: |
-            mkdir dst_repo
+            CLONE_DIR=$(mktemp -d)
+
             git config --global user.email "abargiela@gmail.com"
             git config --global user.name "abargiela"
-            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git" /tmp/dst_repo 
+            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git" ${CLONE_DIR}
 
-            rm -rf /tmp/dst_repo/*
-            cd /tmp/dst_repo
+            cd ${CLONE_DIR}
 
             if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then
                 git checkout -b ${{ steps.current_branch.outputs.branch }}
             fi
-            cd - 
-            cp -R ../* ../.gitignore /tmp/dst_repo/
-            cd -
+
+            cp -R /home/runner/work/test_bors/test_bors/* /home/runner/work/test_bors/test_bors/.gitignore ${CLONE_DIR}
 
             git add . 
             git commit -m "Automatic publish from github.com/prject"

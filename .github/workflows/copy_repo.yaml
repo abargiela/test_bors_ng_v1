@@ -33,7 +33,7 @@ jobs:
           uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
           env:
             API_TOKEN_GITHUB: ${{ secrets.BORS }}
-            GITHUB_BASE_REF: ${GITHUB_REF##*/}
+            GITHUB_BASE_REF: ${github.base_ref}
           with:
             source_file: '*'
             destination_repo: 'abargiela/test_bors_ng_copy'
@@ -41,6 +41,6 @@ jobs:
             user_email: 'abargiela@gmail.com'
             user_name: 'abargiela'
             commit_message: 'A custom message for the commit'
-            destination_branch: ${{ github.base_ref }}
-            destination_branch_create: ${{ github.base_ref }}
+            destination_branch: ${GITHUB_BASE_REF}
+            destination_branch_create: ${GITHUB_BASE_REF}
 

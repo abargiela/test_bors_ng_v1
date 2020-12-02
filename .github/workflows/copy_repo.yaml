@@ -23,7 +23,7 @@ jobs:
             path: artifact_test/world.txt
 
         - name: branch
-          run: echo $GITHUB_BASE_REF
+          run: env |grep -i git
 
         - name: Pushes test file
           uses: dmnemec/copy_file_to_another_repo_action@v1.0.4

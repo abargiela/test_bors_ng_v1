@@ -43,6 +43,7 @@ jobs:
             if git status | grep -q "nothing to commit"; then
                 echo "Everything is up to date ";
             else
+                git remote add origin "https://x-access-token:${{ secrets.API_TOKEN_GITHUB }}@github.com/abargiela/test_bors_ng_copy.git"
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
                 git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}  "https://x-access-token:${{ secrets.API_TOKEN_GITHUB }}@github.com/abargiela/test_bors_ng_copy.git" 
             fi

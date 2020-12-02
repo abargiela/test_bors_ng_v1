@@ -27,9 +27,7 @@ jobs:
           id: current_branch
 
         - name: copy repo
-          shell: bash
           run: |
-            bash -x 
             CLONE_DIR=$(mktemp -d)
 
             git config --global user.email "abargiela@gmail.com"

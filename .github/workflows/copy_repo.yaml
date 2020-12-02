@@ -26,6 +26,12 @@ jobs:
           run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
           id: current_branch
 
+        - name: get folder 
+          run: ls -lahS 
+
+        - name: get folder 2 
+          run: ls ; pwd
+
         - name: copy repo
           run: |
             mkdir dst_repo

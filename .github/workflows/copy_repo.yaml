@@ -32,7 +32,7 @@ jobs:
             mkdir /tmp/ci_clone
             git config --global user.email "abargiela@gmail.com"
             git config --global user.name "abargiela"
-            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://x-access-token:${{ secrets.API_TOKEN_GITHUB }}@github.com/abargiela/test_bors_ng_copy.git" ci_clone
+            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://x-access-token:${{ secrets.API_TOKEN_GITHUB }}@github.com/abargiela/test_bors_ng_copy.git" /tmp/ci_clone
             cd /tmp/ci_clone 
             if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then
                 git checkout -b ${{ steps.current_branch.outputs.branch }}

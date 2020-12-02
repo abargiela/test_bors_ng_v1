@@ -40,7 +40,11 @@ jobs:
                 git checkout -b ${{ steps.current_branch.outputs.branch }}
             fi
 
-            cd - ; rsync -avz *  $CLONE_DIR --exclude '.git' --exclude '.github'; cd $CLONE_DIR
+            cd - ;
+            rsync -az *  $CLONE_DIR \
+                --exclude '.git' \
+                --exclude '.github';
+            cd $CLONE_DIR
 
             git add .
             if git status | grep -q "nothing to commit"; then

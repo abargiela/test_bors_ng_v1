@@ -47,8 +47,8 @@ jobs:
                 git remote -v 
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
                 echo 2
-                git remote -v 
-                git remote add origin https://$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git
+                git remote rm origin 
+                git remote add origin https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git
                 git push -u origin HEAD:${{ steps.current_branch.outputs.branch }} 
                 echo 3
                 git remote -v 

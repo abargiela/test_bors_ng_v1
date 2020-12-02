@@ -31,13 +31,11 @@ jobs:
           run: |
             CLONE_DIR=$(mktemp -d)
 
-            #git config --global user.email "abargiela@gmail.com"
-            #git config --global user.name "abargiela"
+            git config --global user.email "abargiela@gmail.com"
+            git config --global user.name "abargiela"
 
             git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git" $CLONE_DIR
 
-            git config --global user.email "abargiela@gmail.com"
-            git config --global user.name "abargiela"
             cd $CLONE_DIR
             if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then
                 git checkout -b ${{ steps.current_branch.outputs.branch }}
@@ -45,7 +43,7 @@ jobs:
 
             cd - ; cp -a *  $CLONE_DIR; cd $CLONE_DIR
 
-            git add .
+            git add -A
             if git status | grep -q "nothing to commit"; then
                 echo "Everything is up to date ";
             else

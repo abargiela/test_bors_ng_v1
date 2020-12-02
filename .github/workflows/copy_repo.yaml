@@ -3,6 +3,7 @@ name: copy repo
 on:
   push:
 
+
 jobs:
   copy_repo:
     name: copy-repo
@@ -38,10 +39,15 @@ jobs:
                 git checkout -b ${{ steps.current_branch.outputs.branch }}
             fi
             cd - ; cp -a *  /tmp/ci_clone; cd /tmp/ci_clone
+
             git status
-            git add . 
-            git commit -m "Automatic publish from github.com/prject"
-            git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
+            if git status | grep -q "nothing to commit"; then
+                echo "Everything is up to date ";
+            else
+                git add . 
+                git commit -m "Automatic publish from github.com/prject"
+                git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
+            fi 
 
 #        - name: Copy repository
 #          uses: dmnemec/copy_file_to_another_repo_action@v1.0.4

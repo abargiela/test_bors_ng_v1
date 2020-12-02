@@ -28,11 +28,14 @@ jobs:
           id: current_branch
 
         - name: copy repo
+          env: |
+            REPO_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
+
           run: |
             CLONE_DIR=$(mktemp -d)
             git config --global user.email "abargiela@gmail.com"
             git config --global user.name "abargiela"
-            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://${{ secrets.API_TOKEN_GITHUB }}@github.com/abargiela/test_bors_ng_copy.git" $CLONE_DIR
+            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://$REPO_TOKEN@github.com/abargiela/test_bors_ng_copy.git" $CLONE_DIR
             cd $CLONE_DIR
             if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then
                 git checkout -b ${{ steps.current_branch.outputs.branch }}

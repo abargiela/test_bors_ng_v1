@@ -33,7 +33,7 @@ jobs:
             git config --global user.name "abargiela"
             git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git" dst_repo 
 
-            rm -rf dst_repo/
+            rm -rf dst_repo/*
             cd dst_repo
             git checkout -b ${{ steps.current_branch.outputs.branch }}
             cp -R ../* ../.gitignore .

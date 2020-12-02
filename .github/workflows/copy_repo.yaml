@@ -50,7 +50,7 @@ jobs:
             else
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
                 #git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
-                git push "https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git" HEAD:${{ steps.current_branch.outputs.branch }}  --follow-tags --force --tags 
+                #git push "https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git" HEAD:${{ steps.current_branch.outputs.branch }}  --follow-tags --force --tags 
             fi
 
 

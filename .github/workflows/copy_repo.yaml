@@ -53,7 +53,7 @@ jobs:
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
                 git remote rm origin
                 git remote add origin https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git/
-                GIT_TRACE=1  git push --set-upstream origin ab
+                GIT_TRACE=1  git push --set-upstream origin ${{ steps.current_branch.outputs.branch }}
 
 
                 #git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"

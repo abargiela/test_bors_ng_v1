@@ -28,7 +28,7 @@ jobs:
 
         - name: copy repo
           run: |
-
+            mkdir dst_repo
             git config --global user.email "abargiela@gmail.com"
             git config --global user.name "abargiela"
             git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git" dst_repo 

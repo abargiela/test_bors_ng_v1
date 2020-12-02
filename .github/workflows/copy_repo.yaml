@@ -21,9 +21,6 @@ jobs:
             name: artifact_test
             path: artifact_test/world.txt
 
-        - name: rsync
-          run: whereis rsync
-
         - name: Get current branch
           shell: bash
           run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
@@ -43,7 +40,7 @@ jobs:
                 git checkout -b ${{ steps.current_branch.outputs.branch }}
             fi
 
-            cd - ; cp -a *  $CLONE_DIR; cd $CLONE_DIR
+            cd - ; rsync -avz *  $CLONE_DIR --exclude '.git' --exclude '.github'; cd $CLONE_DIR
 
             git add .
             if git status | grep -q "nothing to commit"; then

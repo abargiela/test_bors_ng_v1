@@ -26,17 +26,26 @@ jobs:
           run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
           id: current_branch
 
-        - name: Copy repository
-          uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
-          env:
-            API_TOKEN_GITHUB: ${{ secrets.BORS }}
+        - uses: olivr/copybara-action@v1.2.2
           with:
-            source_file: '*'
-            destination_repo: 'abargiela/test_bors_ng_copy'
-            destination_folder: '/'
-            user_email: 'abargiela@gmail.com'
-            user_name: 'abargiela'
-            commit_message: 'A custom message for the commit'
-            destination_branch: ${{ steps.current_branch.outputs.branch }}
-            destination_branch_create: ${{ steps.current_branch.outputs.branch }}
+          	ssh_key: ${{ secrets.SSH_KEY }}
+          	access_token: ${{ secrets.BORS }}
+          	sot_repo: git@github.com:abargiela/test_bors.git
+          	destination_repo: git@github.com:abargiela/test_bors_ng_copy.git
+			sot_branch: ${{ steps.current_branch.outputs.branch }}
+			destination_branch: ${{ steps.current_branch.outputs.branch }}
+
+#        - name: Copy repository
+#          uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
+#          env:
+#            API_TOKEN_GITHUB: ${{ secrets.BORS }}
+#          with:
+#            source_file: '*'
+#            destination_repo: 'abargiela/test_bors_ng_copy'
+#            destination_folder: '/'
+#            user_email: 'abargiela@gmail.com'
+#            user_name: 'abargiela'
+#            commit_message: 'A custom message for the commit'
+#            destination_branch: ${{ steps.current_branch.outputs.branch }}
+#            destination_branch_create: ${{ steps.current_branch.outputs.branch }}
 

@@ -1,0 +1,55 @@
+name: copy repo
+
+on:
+  push:
+
+jobs:
+  copy_repo:
+    name: copy-repo
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    steps:
+
+        - uses: actions/checkout@v2
+
+        - run: mkdir -p artifact_test
+
+        - run: echo hello > artifact_test/world.txt
+        - run: echo hello2 >> artifact_test/world.txt
+
+        - uses: actions/upload-artifact@v2
+          with:
+            name: artifact_test
+            path: artifact_test/world.txt
+
+        - uses: actions/download-artifact@v2
+          with:
+            name: artifact_test
+
+        - name: branch
+          run: echo ${GITHUB_REF##*/}
+
+        - name: Copy
+          uses: andstor/copycat-action@v3
+          with:
+            personal_token: ${{ secrets.BORS }}
+            src_path: /.
+            dst_path: /teste123
+            dst_owner: abargiela
+            dst_repo_name: test_bors_ng_copy
+            src_branch: main
+            dst_branch: main
+
+#        - name: Pushes test file
+#          uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
+#          env:
+#            API_TOKEN_GITHUB: ${{ secrets.BORS }}
+#          with:
+#            source_file: '*'
+#            destination_repo: 'abargiela/test_bors_ng_copy'
+#            destination_folder: '/'
+#            user_email: 'abargiela@gmail.com'
+#            user_name: 'abargiela'
+#            commit_message: 'A custom message for the commit'
+#            destination_branch: ${GITHUB_REF##*/}
+#            destination_branch_create: ${GITHUB_REF##*/}

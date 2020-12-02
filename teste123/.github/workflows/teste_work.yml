@@ -1,0 +1,11 @@
+name: test manually run in a custom repo 
+
+on: workflow_dispatch
+
+jobs: 
+  test_job:
+    name: test 
+    runs-on: ubuntu-latest 
+    steps: 
+    - name: teste 
+      run: echo a

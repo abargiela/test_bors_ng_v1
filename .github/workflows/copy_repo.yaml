@@ -45,7 +45,8 @@ jobs:
                 echo "Everything is up to date ";
             else
                 git commit -m "Automatic publish from github.com/prject"
-                git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
+                git push -u origin HEAD:main
+                #git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
             fi 
 
 #        - name: Copy repository

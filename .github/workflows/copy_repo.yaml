@@ -31,8 +31,8 @@ jobs:
           shell: bash 
           run: |
             CLONE_DIR=$(mktemp -d)
-            git config user.email "abargiela@gmail.com"
-            git config user.name "abargiela"
+            #git config user.email "abargiela@gmail.com"
+            #git config user.name "abargiela"
             git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git" $CLONE_DIR
             cd $CLONE_DIR
             if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then

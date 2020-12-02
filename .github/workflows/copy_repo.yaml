@@ -21,10 +21,10 @@ jobs:
             name: artifact_test
             path: artifact_test/world.txt
 
-        - name: Extract branch name
+        - name: Get current branch
           shell: bash
           run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-          id: extract_branch
+          id: current_branch
 
         - name: Pushes test file
           uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
@@ -37,6 +37,6 @@ jobs:
             user_email: 'abargiela@gmail.com'
             user_name: 'abargiela'
             commit_message: 'A custom message for the commit'
-            destination_branch: ${{ steps.extract_branch.outputs.branch }}
-            destination_branch_create: ${{ steps.extract_branch.outputs.branch }}
+            destination_branch: ${{ steps.current_branch.outputs.branch }}
+            destination_branch_create: ${{ steps.current_branch.outputs.branch }}
 

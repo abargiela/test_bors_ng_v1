@@ -41,7 +41,7 @@ jobs:
                 git checkout -b ${{ steps.current_branch.outputs.branch }}
             fi
 
-            cp -R /home/runner/work/test_bors/test_bors/* /home/runner/work/test_bors/test_bors/.gitignore ${CLONE_DIR}
+            cp -R * ${CLONE_DIR}
 
             git add . 
             git commit -m "Automatic publish from github.com/prject"

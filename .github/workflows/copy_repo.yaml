@@ -29,27 +29,16 @@ jobs:
         - name: branch
           run: echo ${GITHUB_REF##*/}
 
-        - name: Copy
-          uses: andstor/copycat-action@v3
+        - name: Pushes test file
+          uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
+          env:
+            API_TOKEN_GITHUB: ${{ secrets.BORS }}
           with:
-            personal_token: ${{ secrets.BORS }}
-            src_path: /.
-            dst_path: /teste123
-            dst_owner: abargiela
-            dst_repo_name: test_bors_ng_copy
-            src_branch: main
-            dst_branch: main
-
-#        - name: Pushes test file
-#          uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
-#          env:
-#            API_TOKEN_GITHUB: ${{ secrets.BORS }}
-#          with:
-#            source_file: '*'
-#            destination_repo: 'abargiela/test_bors_ng_copy'
-#            destination_folder: '/'
-#            user_email: 'abargiela@gmail.com'
-#            user_name: 'abargiela'
-#            commit_message: 'A custom message for the commit'
-#            destination_branch: ${GITHUB_REF##*/}
-#            destination_branch_create: ${GITHUB_REF##*/}
+            source_file: '*'
+            destination_repo: 'abargiela/test_bors_ng_copy'
+            destination_folder: '/i'
+            user_email: 'abargiela@gmail.com'
+            user_name: 'abargiela'
+            commit_message: 'A custom message for the commit'
+            destination_branch: main #${GITHUB_REF##*/}
+            destination_branch_create: main #${GITHUB_REF##*/}

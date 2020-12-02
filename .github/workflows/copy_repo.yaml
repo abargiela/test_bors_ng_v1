@@ -38,7 +38,7 @@ jobs:
                 git checkout -b ${{ steps.current_branch.outputs.branch }}
             fi
             cd - ; cp -a * .gitignore /tmp/ci_clone; cd -
-#
+
             git add . 
             git commit -m "Automatic publish from github.com/prject"
             git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}

@@ -6,7 +6,7 @@ on:
 jobs:
   copy_repo:
     name: copy-repo
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     timeout-minutes: 70
     steps:
 
@@ -26,14 +26,14 @@ jobs:
           run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
           id: current_branch
 
-        - name: Pushes test file
+        - name: Copy repository
           uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
           env:
             API_TOKEN_GITHUB: ${{ secrets.BORS }}
           with:
             source_file: '*'
             destination_repo: 'abargiela/test_bors_ng_copy'
-            destination_folder: '/a'
+            destination_folder: '/'
             user_email: 'abargiela@gmail.com'
             user_name: 'abargiela'
             commit_message: 'A custom message for the commit'

@@ -10,15 +10,9 @@ jobs:
     timeout-minutes: 70
     steps:
 
-        - uses: xt0rted/pull-request-comment-branch@v1
-          id: comment-branch
-          with:
-            repo_token: ${{ secrets.BORS }}
-
         - uses: actions/checkout@v2
-          if: success()
-          with:
-            ref: ${{ steps.comment-branch.outputs.head_ref }}
+
+        - uses: nelonoel/branch-name@v1.0.1
 
         - run: mkdir -p artifact_test
 
@@ -41,5 +35,5 @@ jobs:
             user_email: 'abargiela@gmail.com'
             user_name: 'abargiela'
             commit_message: 'A custom message for the commit'
-            destination_branch: ${{ steps.comment-branch.outputs.head_ref }}
-            destination_branch_create: ${{ steps.comment-branch.outputs.head_ref }}
+            destination_branch: ${BRANCH_NAME}
+            destination_branch_create: ${BRANCH_NAME}

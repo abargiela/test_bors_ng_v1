@@ -37,16 +37,17 @@ jobs:
             mkdir dst_repo
             git config --global user.email "abargiela@gmail.com"
             git config --global user.name "abargiela"
-            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git" dst_repo 
+            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git" /tmp/dst_repo 
 
-            rm -rf dst_repo/*
-            cd dst_repo
+            rm -rf /tmp/dst_repo/*
+            cd /tmp/dst_repo
 
             if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then
                 git checkout -b ${{ steps.current_branch.outputs.branch }}
             fi
-
-            cp -R ../* ../.gitignore .
+            cd - 
+            cp -R ../* ../.gitignore /tmp/dst_repo/
+            cd -
 
             git add . 
             git commit -m "Automatic publish from github.com/prject"

@@ -28,10 +28,8 @@ jobs:
           id: current_branch
 
         - name: copy repo
+          shell: bash 
           run: |
-            #!/bin/bash
-            set -o pipefail
-            shopt -s extglob globstar nullglob dotglob
             CLONE_DIR=$(mktemp -d)
             git config --global user.email "abargiela@gmail.com"
             git config --global user.name "abargiela"

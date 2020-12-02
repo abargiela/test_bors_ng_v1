@@ -35,7 +35,11 @@ jobs:
 
             rm -rf dst_repo/*
             cd dst_repo
-            git checkout -b ${{ steps.current_branch.outputs.branch }}
+
+            if [ ! -z ${{ steps.current_branch.outputs.branch }} ]; then
+                git checkout -b ${{ steps.current_branch.outputs.branch }}
+            fi
+
             cp -R ../* ../.gitignore .
 
             git add . 

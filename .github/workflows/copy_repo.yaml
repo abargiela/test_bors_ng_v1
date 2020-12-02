@@ -28,12 +28,12 @@ jobs:
 
         - uses: olivr/copybara-action@v1.2.2
           with:
-          	ssh_key: ${{ secrets.SSH_KEY }}
-          	access_token: ${{ secrets.BORS }}
-          	sot_repo: git@github.com:abargiela/test_bors.git
-          	destination_repo: git@github.com:abargiela/test_bors_ng_copy.git
-			sot_branch: ${{ steps.current_branch.outputs.branch }}
-			destination_branch: ${{ steps.current_branch.outputs.branch }}
+            ssh_key: ${{ secrets.SSH_KEY }}
+            access_token: ${{ secrets.BORS }}
+            sot_repo: git@github.com:abargiela/test_bors.git
+            destination_repo: git@github.com:abargiela/test_bors_ng_copy.git
+            sot_branch: ${{ steps.current_branch.outputs.branch }}
+            destination_branch: ${{ steps.current_branch.outputs.branch }}
 
 #        - name: Copy repository
 #          uses: dmnemec/copy_file_to_another_repo_action@v1.0.4

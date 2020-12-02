@@ -30,9 +30,6 @@ jobs:
         - name: copy repo
           run: |
             #!/bin/bash
-            set -o pipefail
-
-            shopt -s extglob globstar nullglob dotglob
             CLONE_DIR=$(mktemp -d)
             git config --global user.email "abargiela@gmail.com"
             git config --global user.name "abargiela"
@@ -47,19 +44,8 @@ jobs:
             if git status | grep -q "nothing to commit"; then
                 echo "Everything is up to date ";
             else
-                echo 1
-                git remote -v 
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
-                echo 2
-                git remote -v 
-                pwd
-                pwd
-                git remote show origin
-                ls -lahS 
-                git push -u origin main 
-                # HEAD:${{ steps.current_branch.outputs.branch }} 
-                echo 3
-                git remote -v 
+                git push -u origin HEAD:${{ steps.current_branch.outputs.branch }} 
             fi
 
 #        - name: Copy repository

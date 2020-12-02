@@ -33,8 +33,8 @@ jobs:
             dst_path: /
             dst_owner: abargiela
             dst_repo_name: test_bors_ng_copy
-            src_branch: ${GITHUB_REF##*/}
-            dst_branch: ${GITHUB_REF##*/}
+            src_branch: ${GITHUB_REF}
+            dst_branch: ${GITHUB_REF}
 
 #        - name: Pushes test file
 #          uses: dmnemec/copy_file_to_another_repo_action@v1.0.4

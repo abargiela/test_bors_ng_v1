@@ -28,7 +28,7 @@ jobs:
           id: current_branch
 
         - name: copy repo
-          env: |
+          env:
             REPO_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
 
           run: |

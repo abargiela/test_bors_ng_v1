@@ -40,11 +40,10 @@ jobs:
             fi
             cd - ; cp -a *  /tmp/ci_clone; cd /tmp/ci_clone
 
-            git status
+            git add . 
             if git status | grep -q "nothing to commit"; then
                 echo "Everything is up to date ";
             else
-                git add . 
                 git commit -m "Automatic publish from github.com/prject"
                 git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
             fi 

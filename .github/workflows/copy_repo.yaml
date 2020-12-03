@@ -44,7 +44,7 @@ jobs:
             git config --global user.name $USERNAME
 
             # cloning the destination repo
-            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "git@github.com:$DST_REPO" $CLONE_DIR
+            git clone "git@github.com:$DST_REPO" $CLONE_DIR
 
             # Create the current branch in the destination repository
             cd $CLONE_DIR
@@ -63,11 +63,8 @@ jobs:
             cd $CLONE_DIR
 
             git add -A;
-            #if [ $(git status --porcelain | wc -l) -eq 0 ]; then
-            #    echo "Everything is up to date" && exit 0
-            #fi
+            # If anything is modified is commited
             if [ $(git status --porcelain | wc -l) -gt 0 ]; then
-                # Check if any modification occurs and then handle it.
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
                 git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
             fi

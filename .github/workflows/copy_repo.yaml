@@ -32,8 +32,8 @@ jobs:
             # Create a temporary folder to clone the other repo
             CLONE_DIR=$(mktemp -d)
             DST_REPO='abargiela/test_bors_ng_copy.git'
-            EMAIL='abargiela@gmail.com'
-            USERNAME='abargiela'
+            EMAIL='test@gmail.com'
+            USERNAME='test'
 
             # Set the key to be able to clone the repo
             eval "$(ssh-agent -s)"

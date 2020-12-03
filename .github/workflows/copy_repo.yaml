@@ -25,7 +25,7 @@ jobs:
           uses: actions/checkout@v2
           with:
             repository: abargiela/test_bors_ng_copy
-            path: /tmp/test_bors_ng_copy
+            path: test_bors_ng_copy
 
         - name: Get current branch
           shell: bash
@@ -51,6 +51,7 @@ jobs:
             rsync -az *  $CLONE_DIR \
                 --exclude '.git' \
                 --exclude '.github' \
+                --exclude 'test_bors_ng_copy' \
                 --delete ;
             cd $CLONE_DIR
 

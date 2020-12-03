@@ -21,12 +21,6 @@ jobs:
             name: artifact_test
             path: artifact_test/world.txt
 
-        - name: Checkout other repo
-          uses: actions/checkout@v2
-          with:
-            repository: abargiela/test_bors_ng_copy
-            path: test_bors_ng_copy
-
         - name: Get current branch
           shell: bash
           run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
@@ -40,7 +34,7 @@ jobs:
             #git config --global user.email "abargiela@gmail.com"
             #git config --global user.name "abargiela"
 
-            #git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "git@github.com:abargiela/test_bors_ng_copy.git" $CLONE_DIR
+            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "git@github.com:abargiela/test_bors_ng_copy.git" $CLONE_DIR
 
             cd $CLONE_DIR
             if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then
@@ -51,7 +45,6 @@ jobs:
             rsync -az *  $CLONE_DIR \
                 --exclude '.git' \
                 --exclude '.github' \
-                --exclude 'test_bors_ng_copy' \
                 --delete ;
             cd $CLONE_DIR
 

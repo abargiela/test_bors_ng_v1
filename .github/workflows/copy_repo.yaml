@@ -32,6 +32,7 @@ jobs:
             CLONE_DIR="/tmp/test_bors_ng_copy"
             eval "$(ssh-agent -s)"
             echo "${{secrets.SSH_PRIVATE_KEY }}" > /tmp/repo_rsa 
+            chmod 400 /tmp/repo_rsa
             ssh-add /tmp/repo_rsa
             #git config --global user.email "abargiela@gmail.com"
             #git config --global user.name "abargiela"

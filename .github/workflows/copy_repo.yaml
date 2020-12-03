@@ -21,7 +21,7 @@ jobs:
             name: artifact_test
             path: artifact_test/world.txt
 
-        - name: Checkout tools repo
+        - name: Checkout other repo
           uses: actions/checkout@v2
           with:
             repository: abargiela/test_bors_ng_copy

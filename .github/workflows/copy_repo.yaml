@@ -73,8 +73,12 @@ jobs:
             echo 'bbbbbbb'
             if [ $(git status --porcelain | wc -l) -gt 0 ]; then
                 # Check if any modification occurs and then handle it.
+                echo 1
                 git add -A;
+                echo 2
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
+                echo 3
                 git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
+                echo 4
             fi
 

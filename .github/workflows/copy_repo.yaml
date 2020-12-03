@@ -66,10 +66,7 @@ jobs:
             git status
             echo '-------'
             # Check if any modification occurs and then handle it.
-            if git status | egrep -q "nothing to commit | Your branch is up to date"; then
-                echo "No changes detected" && exit 0;
-            else
-                git status | egrep -q "deleted | Untracked files | git add";
+            if git status | egrep -q "deleted | Untracked files | git add"; then
                 git add -A;
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
                 git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}

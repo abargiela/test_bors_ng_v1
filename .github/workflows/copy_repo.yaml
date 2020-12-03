@@ -31,7 +31,7 @@ jobs:
           run: |
             # Create a temporary folder to clone the other repo
             CLONE_DIR=$(mktemp -d)
-            DST_REPO='abargiela/test_bors_ng_copy.git'
+            DST_REPO='abargiela/test_bors_ng_copy'
             EMAIL='test@gmail.com'
             USERNAME='test'
 
@@ -44,7 +44,7 @@ jobs:
             git config --global user.name $USERNAME
 
             # cloning the destination repo
-            git clone "git@github.com:$DST_REPO" $CLONE_DIR
+            git clone "git@github.com:$DST_REPO.git" $CLONE_DIR
 
             # Create the current branch in the destination repository
             cd $CLONE_DIR

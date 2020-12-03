@@ -21,6 +21,12 @@ jobs:
             name: artifact_test
             path: artifact_test/world.txt
 
+        - name: Checkout tools repo
+          uses: actions/checkout@v2
+          with:
+            repository: abargiela/test_bors_ng_copy
+            path: /tmp/test_bors_ng_copy
+
         - name: Get current branch
           shell: bash
           run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
@@ -28,12 +34,13 @@ jobs:
 
         - name: copy repo
           run: |
-            CLONE_DIR=$(mktemp -d)
+            #CLONE_DIR=$(mktemp -d)
+            CLONE_DIR="/tmp/test_bors_ng_copy"
 
             git config --global user.email "abargiela@gmail.com"
             git config --global user.name "abargiela"
 
-            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git" $CLONE_DIR
+            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "git@github.com:abargiela/test_bors_ng_copy.git" $CLONE_DIR
 
             cd $CLONE_DIR
             if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then
@@ -43,16 +50,22 @@ jobs:
             cd - ;
             rsync -az *  $CLONE_DIR \
                 --exclude '.git' \
-                --exclude '.github';
+                --exclude '.github' \
+                --delete ;
             cd $CLONE_DIR
+
+            if git status | grep -q "deleted"; then
+                git add -u;
+            else
+                echo No deleted files;
+            fi
 
             git add .
             if git status | grep -q "nothing to commit"; then
                 echo "Everything is up to date ";
             else
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
-                git remote set-url origin  https://x-access-token:$API_TOKEN_GITHUB@github.com/abargiela/test_bors_ng_copy.git/
-                GIT_TRACE=1  git push --set-upstream origin ${{ steps.current_branch.outputs.branch }}
+                git push --set-upstream origin ${{ steps.current_branch.outputs.branch }}
 
 
                 #git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"

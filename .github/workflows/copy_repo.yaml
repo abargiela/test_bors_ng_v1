@@ -28,8 +28,10 @@ jobs:
 
         - name: copy repo
           run: |
+            # Create a temporary folder to clone the other repo
             CLONE_DIR=$(mktemp -d)
 
+            # Set the key to be able to clone the repo
             eval "$(ssh-agent -s)"
             echo "${{secrets.SSH_PRIVATE_KEY }}" > /tmp/repo_rsa 
             chmod 400 /tmp/repo_rsa
@@ -37,50 +39,38 @@ jobs:
             git config --global user.email "abargiela@gmail.com"
             git config --global user.name "abargiela"
 
+            # cloning the destination repo
             git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "git@github.com:abargiela/test_bors_ng_copy.git" $CLONE_DIR
 
+            # Create the current branch in the destination repository
             cd $CLONE_DIR
             if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then
                 git checkout -b ${{ steps.current_branch.outputs.branch }}
             fi
+            # Cleaning all files on the destination repository
             git rm -r .
 
+            # Copy all files from the src repo to the dst repo
             cd - ;
             rsync -az --delete .*  $CLONE_DIR \
                 --exclude '.git' \
                 --exclude '.github';
             cd $CLONE_DIR
 
-            pwd
-            git status
-            if git status | grep -q "deleted"; then
-                git add -u;
-            else
-                echo No deleted files;
-            fi
 
-            git add .
-            if git status | grep -q "nothing to commit"; then
-                echo "Everything is up to date ";
-            else
+            # Check if any modification occurs and then handle it.
+            if [[ git status | grep -q "deleted" ]] || if [[ git status | grep -q "git add" ]]; then
+                git add -A;
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
                 git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
-
-                #-u origin HEAD:${{ steps.current_branch.outputs.branch }}
+            else
+                echo "No changes detected";
             fi
 
-
-#        - name: Copy repository
-#          uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
-#          env:
-#            API_TOKEN_GITHUB: ${{ secrets.BORS }}
-#          with:
-#            source_file: '*'
-#            destination_repo: 'abargiela/test_bors_ng_copy'
-#            destination_folder: '/'
-#            user_email: 'abargiela@gmail.com'
-#            user_name: 'abargiela'
-#            commit_message: 'A custom message for the commit'
-#            destination_branch: ${{ steps.current_branch.outputs.branch }}
-#            destination_branch_create: ${{ steps.current_branch.outputs.branch }}
-
+            #git add .
+            #if git status | grep -q "nothing to commit"; then
+            #    echo "Everything is up to date ";
+            #else
+            #    git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
+            #    git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
+            #fi

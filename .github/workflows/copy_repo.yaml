@@ -30,8 +30,8 @@ jobs:
           run: |
             #CLONE_DIR=$(mktemp -d)
             CLONE_DIR="/tmp/test_bors_ng_copy"
-            echo "${{secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/repo_rsa 
-            ssh-add ~/.ssh/repo_rsa
+            echo "${{secrets.SSH_PRIVATE_KEY }}" > /tmp/repo_rsa 
+            ssh-add /tmp/repo_rsa
             #git config --global user.email "abargiela@gmail.com"
             #git config --global user.name "abargiela"
 

@@ -28,8 +28,8 @@ jobs:
 
         - name: copy repo
           run: |
-            #CLONE_DIR=$(mktemp -d)
-            CLONE_DIR="/tmp/test_bors_ng_copy"
+            CLONE_DIR=$(mktemp -d)
+
             eval "$(ssh-agent -s)"
             echo "${{secrets.SSH_PRIVATE_KEY }}" > /tmp/repo_rsa 
             chmod 400 /tmp/repo_rsa

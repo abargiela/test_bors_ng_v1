@@ -69,7 +69,7 @@ jobs:
             if git status | grep -q "nothing to commit"; then
                 echo "No changes detected" && exit 0;
             else
-                git status | grep -q "deleted" || git status | grep -q "git add";
+                git status | egrep -q "deleted | Untracked files | git add";
                 git add -A;
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
                 git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}

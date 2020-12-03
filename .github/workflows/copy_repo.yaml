@@ -63,9 +63,9 @@ jobs:
             cd $CLONE_DIR
 
             git add -A;
-            if [ $(git status --porcelain | wc -l) -eq 0 ]; then
-                echo "Everything is up to date" && exit 0
-            fi
+            #if [ $(git status --porcelain | wc -l) -eq 0 ]; then
+            #    echo "Everything is up to date" && exit 0
+            #fi
             if [ $(git status --porcelain | wc -l) -gt 0 ]; then
                 # Check if any modification occurs and then handle it.
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"

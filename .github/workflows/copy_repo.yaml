@@ -62,8 +62,12 @@ jobs:
                 --delete;
             cd $CLONE_DIR
 
-            # Check if any modification occurs and then handle it.
-            git add -A;
-            git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
-            git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
+            if git status | grep 'nothing to commit'; then 
+                echo "Everything is up to date"
+            else
+                # Check if any modification occurs and then handle it.
+                git add -A;
+                git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
+                git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
+            fi
 

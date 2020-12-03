@@ -66,7 +66,7 @@ jobs:
             git status
             echo '-------'
             # Check if any modification occurs and then handle it.
-            if git status | grep -q "nothing to commit"; then
+            if git status | egrep -q "nothing to commit | Your branch is up to date"; then
                 echo "No changes detected" && exit 0;
             else
                 git status | egrep -q "deleted | Untracked files | git add";

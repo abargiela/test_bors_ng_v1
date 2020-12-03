@@ -64,14 +64,11 @@ jobs:
                 --exclude '.github';
             cd $CLONE_DIR
 
-            echo 89
+            # Check if any modification occurs and then handle it.
             if git status | grep -q "nothing to commit"; then
                 echo "No changes detected" && exit 0;
-            fi
-
-            echo 99
-            # Check if any modification occurs and then handle it.
-            if git status | grep -q "deleted" || git status | grep -q "git add"; then
+            else
+                git status | grep -q "deleted" || git status | grep -q "git add"; then
                 git add -A;
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
                 git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}

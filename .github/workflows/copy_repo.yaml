@@ -56,9 +56,10 @@ jobs:
 
             # Copy all files from the src repo to the dst repo
             cd - ;
-            rsync -az --delete (.*|*)  $CLONE_DIR \
+            rsync -avz (.*|*)  $CLONE_DIR \
                 --exclude '.git' \
-                --exclude '.github';
+                --exclude '.github' \
+                --delete;
             cd $CLONE_DIR
 
 

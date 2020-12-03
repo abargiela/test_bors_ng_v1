@@ -39,12 +39,14 @@ jobs:
             echo "${{secrets.SSH_PRIVATE_KEY }}" > /tmp/repo_rsa
             chmod 400 /tmp/repo_rsa
             ssh-add /tmp/repo_rsa
-            git config --global user.email ${EMAIL}
-            git config --global user.name ${USERNAME}
+            git config --global user.email $EMAIL
+            git config --global user.name $USERNAME
 
+            echo 1
             # cloning the destination repo
-            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "git@github.com:${DST_REPO}" ${CLONE_DIR}
+            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "git@github.com:$DST_REPO" $CLONE_DIR
 
+            echo 2
             # Create the current branch in the destination repository
             cd $CLONE_DIR
             if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then
@@ -53,6 +55,7 @@ jobs:
             # Cleaning all files on the destination repository
             git rm -r .
 
+            echo 3
             # Copy all files from the src repo to the dst repo
             cd - ;
             rsync -az --delete .*  $CLONE_DIR \

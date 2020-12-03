@@ -63,7 +63,7 @@ jobs:
             cd $CLONE_DIR
 
             if git status | grep 'nothing to commit'; then 
-                echo "Everything is up to date"
+                echo "Everything is up to date" && exit 0
             else
                 # Check if any modification occurs and then handle it.
                 git add -A;

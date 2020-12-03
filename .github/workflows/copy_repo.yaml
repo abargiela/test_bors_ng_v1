@@ -44,7 +44,8 @@ jobs:
                 git checkout -b ${{ steps.current_branch.outputs.branch }}
             fi
 
-            cd - ; rm -rf  $CLONE_DIR
+            cd - ;
+            find $CLONE_DIR  ! -name ".git" -delete
             rsync -az --delete *  $CLONE_DIR \
                 --exclude '.git' \
                 --exclude '.github';

@@ -45,10 +45,9 @@ jobs:
             fi
 
             cd - ;
-            rsync -az *  $CLONE_DIR \
+            rsync -az --delete *  $CLONE_DIR \
                 --exclude '.git' \
-                --exclude '.github' \
-                --delete ;
+                --exclude '.github';
             cd $CLONE_DIR
 
             if git status | grep -q "deleted"; then

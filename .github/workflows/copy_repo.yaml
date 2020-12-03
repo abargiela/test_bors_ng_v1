@@ -61,6 +61,10 @@ jobs:
                 --exclude '.github';
             cd $CLONE_DIR
 
+
+            echo '-----'
+            git status
+            echo '-------'
             # Check if any modification occurs and then handle it.
             if git status | grep -q "nothing to commit"; then
                 echo "No changes detected" && exit 0;

@@ -6,7 +6,7 @@ on:
 jobs:
   copy_repo:
     name: copy-repo
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 70
     steps:
 
@@ -30,17 +30,20 @@ jobs:
           run: |
             # Create a temporary folder to clone the other repo
             CLONE_DIR=$(mktemp -d)
+            DST_REPO="abargiela/test_bors_ng_copy.git"
+            EMAIL="abargiela@gmail.com"
+            USERNAME="abargiela"
 
             # Set the key to be able to clone the repo
             eval "$(ssh-agent -s)"
             echo "${{secrets.SSH_PRIVATE_KEY }}" > /tmp/repo_rsa 
             chmod 400 /tmp/repo_rsa
             ssh-add /tmp/repo_rsa
-            git config --global user.email "abargiela@gmail.com"
-            git config --global user.name "abargiela"
+            git config --global user.email ${EMAIL}
+            git config --global user.name ${USERNAME}
 
             # cloning the destination repo
-            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "git@github.com:abargiela/test_bors_ng_copy.git" $CLONE_DIR
+            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "git@github.com:${DST_REPO}" ${CLONE_DIR}
 
             # Create the current branch in the destination repository
             cd $CLONE_DIR
@@ -57,7 +60,6 @@ jobs:
                 --exclude '.github';
             cd $CLONE_DIR
 
-
             # Check if any modification occurs and then handle it.
             if git status | grep -q "deleted" || git status | grep -q "git add"; then
                 git add -A;
@@ -66,11 +68,3 @@ jobs:
             else
                 echo "No changes detected";
             fi
-
-            #git add .
-            #if git status | grep -q "nothing to commit"; then
-            #    echo "Everything is up to date ";
-            #else
-            #    git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
-            #    git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
-            #fi

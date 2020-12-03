@@ -62,8 +62,9 @@ jobs:
                 --delete;
             cd $CLONE_DIR
 
-            #if [ $(git status --porcelain | wc -l) -eq 0 ]; then
-            #    echo "Everything is up to date" && exit 0
+            if [ $(git status --porcelain | wc -l) -eq 0 ]; then
+                echo "Everything is up to date" && exit 0
+            fi
             #else
             #    # Check if any modification occurs and then handle it.
             #    git add -A;

@@ -30,13 +30,13 @@ jobs:
           run: |
             # Create a temporary folder to clone the other repo
             CLONE_DIR=$(mktemp -d)
-            DST_REPO="abargiela/test_bors_ng_copy.git"
-            EMAIL="abargiela@gmail.com"
-            USERNAME="abargiela"
+            DST_REPO='abargiela/test_bors_ng_copy.git'
+            EMAIL='abargiela@gmail.com'
+            USERNAME='abargiela'
 
             # Set the key to be able to clone the repo
             eval "$(ssh-agent -s)"
-            echo "${{secrets.SSH_PRIVATE_KEY }}" > /tmp/repo_rsa 
+            echo "${{secrets.SSH_PRIVATE_KEY }}" > /tmp/repo_rsa
             chmod 400 /tmp/repo_rsa
             ssh-add /tmp/repo_rsa
             git config --global user.email ${EMAIL}

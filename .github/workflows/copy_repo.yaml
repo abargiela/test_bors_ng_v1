@@ -27,6 +27,7 @@ jobs:
           id: current_branch
 
         - name: copy repo
+          shell: bash
           run: |
             # Create a temporary folder to clone the other repo
             CLONE_DIR=$(mktemp -d)

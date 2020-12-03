@@ -59,7 +59,7 @@ jobs:
 
 
             # Check if any modification occurs and then handle it.
-            if [[ git status | grep -q "deleted" ]] || if [[ git status | grep -q "git add" ]]; then
+            if [[ git status | grep -q "deleted" ]] || [[ git status | grep -q "git add" ]]; then
                 git add -A;
                 git commit --message "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
                 git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}

@@ -43,9 +43,9 @@ jobs:
             if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then
                 git checkout -b ${{ steps.current_branch.outputs.branch }}
             fi
+            git rm -r .
 
             cd - ;
-            git rm -r $CLONE_DIR/*
             rsync -az --delete *  $CLONE_DIR \
                 --exclude '.git' \
                 --exclude '.github';

@@ -71,4 +71,5 @@ jobs:
                 git push -u origin HEAD:${{ steps.current_branch.outputs.branch }}
             else
                 echo "No changes detected";
+                exit 0;
             fi

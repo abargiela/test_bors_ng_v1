@@ -50,6 +50,7 @@ jobs:
                 --exclude '.github';
             cd $CLONE_DIR
 
+            git status
             if git status | grep -q "deleted"; then
                 git add -u;
             else

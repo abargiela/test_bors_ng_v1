@@ -45,7 +45,7 @@ jobs:
             fi
 
             cd - ;
-            find $CLONE_DIR/  ! -name ".git" -delete
+            git rm -r $CLONE_DIR/*
             rsync -az --delete *  $CLONE_DIR \
                 --exclude '.git' \
                 --exclude '.github';

@@ -63,6 +63,7 @@ jobs:
                 --exclude '.github';
             cd $CLONE_DIR
 
+            echo 99
             # Check if any modification occurs and then handle it.
             if git status | grep -q "deleted" || git status | grep -q "git add"; then
                 git add -A;

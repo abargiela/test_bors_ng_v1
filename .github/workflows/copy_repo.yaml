@@ -37,10 +37,10 @@ jobs:
             #CLONE_DIR=$(mktemp -d)
             CLONE_DIR="/tmp/test_bors_ng_copy"
 
-            git config --global user.email "abargiela@gmail.com"
-            git config --global user.name "abargiela"
+            #git config --global user.email "abargiela@gmail.com"
+            #git config --global user.name "abargiela"
 
-            git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "git@github.com:abargiela/test_bors_ng_copy.git" $CLONE_DIR
+            #git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "git@github.com:abargiela/test_bors_ng_copy.git" $CLONE_DIR
 
             cd $CLONE_DIR
             if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then

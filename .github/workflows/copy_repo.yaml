@@ -43,13 +43,14 @@ jobs:
             if [ -z "${{ steps.current_branch.outputs.branch }}" ]; then
                 git checkout -b ${{ steps.current_branch.outputs.branch }}
             fi
-            pwd
-            cd - ;
+
+            cd - ; rm -rf  $CLONE_DIR
             rsync -az --delete *  $CLONE_DIR \
                 --exclude '.git' \
                 --exclude '.github';
             cd $CLONE_DIR
 
+            pwd
             git status
             if git status | grep -q "deleted"; then
                 git add -u;

@@ -34,8 +34,8 @@ jobs:
             echo "${{secrets.SSH_PRIVATE_KEY }}" > /tmp/repo_rsa 
             chmod 400 /tmp/repo_rsa
             ssh-add /tmp/repo_rsa
-            #git config --global user.email "abargiela@gmail.com"
-            #git config --global user.name "abargiela"
+            git config --global user.email "abargiela@gmail.com"
+            git config --global user.name "abargiela"
 
             git clone --single-branch --branch ${{ steps.current_branch.outputs.branch }} "git@github.com:abargiela/test_bors_ng_copy.git" $CLONE_DIR
 

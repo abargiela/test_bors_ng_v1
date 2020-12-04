@@ -20,10 +20,10 @@ jobs:
             name: artifact_test
             path: artifact_test/world.txt
 
-#        - name: Get current branch
-#          shell: bash
-#          run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-#          id: current_branch
+        - name: Get current branch
+          shell: bash
+          run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+          id: current_branch
 
         - name: Copy repository
           shell: bash
@@ -34,7 +34,7 @@ jobs:
             EMAIL='test@gmail.com'
             USERNAME='test'
             SRC_BRANCH='main'
-            DST_BRANCH=commit-$(git rev-parse --short HEAD)
+            DST_BRANCH="${{ steps.current_branch.outputs.branch }}"
 
             # Set the key to be able to clone the repo
             eval "$(ssh-agent -s)"

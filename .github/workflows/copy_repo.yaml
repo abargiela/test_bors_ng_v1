@@ -53,9 +53,11 @@ jobs:
 
             # Create the current branch in the destination repository
             cd $CLONE_DIR
+            echo a
             git fetch --all
+            echo b
             git rev-parse --verify $BRANCH; if [ $? -eq 0 ];then git checkout $BRANCH; else git checkout -b $BRANCH;fi
-
+            echo c
             # Cleaning all files on the destination repository
             git rm -r .
             # Copy all files from the src repo to the dst repo

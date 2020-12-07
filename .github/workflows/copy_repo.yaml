@@ -31,7 +31,7 @@ jobs:
           run: |
             # Create a temporary folder to clone the other repo
             CLONE_DIR=$(mktemp -d)
-            DST_REPO='abargiela/test_bors'
+            DST_REPO='abargiela/test_bors_ng_v1'
             EMAIL='ci@project.io'
             USERNAME='ci'
             BRANCH=${{ steps.current_branch.outputs.branch }}

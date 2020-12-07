@@ -50,7 +50,8 @@ jobs:
             if [ $? -eq 0 ];then
               git clone -b $BRANCH --depth 1 "git@github.com:$DST_REPO.git";
             else
-            git clone --depth 1 "git@github.com:$DST_REPO.git" $CLONE_DIR
+              git clone --depth 1 "git@github.com:$DST_REPO.git" $CLONE_DIR
+            fi
 
             # Create the current branch in the destination repository
             cd $CLONE_DIR

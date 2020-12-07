@@ -48,7 +48,7 @@ jobs:
             # cloning the destination repo
             git clone -b $BRANCH "git@github.com:$DST_REPO.git";
             if [ $? -eq 0 ];then
-              git clone -b $BRANCH --depth 1 "git@github.com:$DST_REPO.git";
+              git clone -b $BRANCH --depth 1 "git@github.com:$DST_REPO.git" $CLONE_DIR;
             else
               git clone --depth 1 "git@github.com:$DST_REPO.git" $CLONE_DIR
             fi

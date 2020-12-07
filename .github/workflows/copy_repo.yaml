@@ -46,11 +46,11 @@ jobs:
             git config --global user.name $USERNAME
 
             # cloning the destination repo
-            git clone -b $BRANCH "git@github.com:$DST_REPO.git";
-            if [ $? -eq 0 ];then
-              git clone -b $BRANCH --depth 1 "git@github.com:$DST_REPO.git" $CLONE_DIR;
-            else
+            BRANCH_EXISTS=$(git ls-remote --heads "git@github.com:$DST_REPO.git" $BRANCH | wc -l);
+            if [ $BRANCH_EXISTS -eq 0 ];then
               git clone --depth 1 "git@github.com:$DST_REPO.git" $CLONE_DIR
+            else
+              git clone -b $BRANCH --depth 1 "git@github.com:$DST_REPO.git" $CLONE_DIR;
             fi
 
             # Create the current branch in the destination repository

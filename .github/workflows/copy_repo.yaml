@@ -47,9 +47,10 @@ jobs:
 
             # cloning the destination repo
             BRANCH_EXISTS=$(git ls-remote --heads "git@github.com:$DST_REPO.git" $BRANCH | wc -l);
+            echo $BRANCH_EXISTS
             if [ "$BRANCH_EXISTS" == 0 ];then
-              echo a 
-              git clone --depth 1 "git@github.com:$DST_REPO.git" $CLONE_DIR
+              echo a
+              git clone -b $BRANCH --depth 1 "git@github.com:$DST_REPO.git" $CLONE_DIR;
             else
               echo b
               git clone -b $BRANCH --depth 1 "git@github.com:$DST_REPO.git" $CLONE_DIR;

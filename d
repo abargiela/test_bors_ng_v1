@@ -1,3 +1,3 @@
-
 oooooo
+oooo
 ooo

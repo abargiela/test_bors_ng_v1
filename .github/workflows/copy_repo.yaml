@@ -1,6 +1,7 @@
 name: copy repo
 
-on: workflow_dispatch
+on: #workflow_dispatch
+  push:
 
 jobs:
   copy_repo:
@@ -50,7 +51,10 @@ jobs:
             # Create the current branch in the destination repository
             cd $CLONE_DIR
             if [ -z "${DST_BRANCH}" ]; then
+                echo "Branch check"
                 git checkout -b ${DST_BRANCH}
+                echo "Branch return $?"
+                echo "Branch changed"
             fi
 
             # Cleaning all files on the destination repository

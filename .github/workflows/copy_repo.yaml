@@ -51,17 +51,17 @@ jobs:
             if [ $BRANCH_EXISTS -eq 0 ];then
             echo b
               git clone --depth 1 "git@github.com:$DST_REPO.git" $CLONE_DIR
+              cd $CLONE_DIR
             else
             echo c 
               git clone -b $BRANCH --depth 1 "git@github.com:$DST_REPO.git" $CLONE_DIR;
+              cd $CLONE_DIR
             fi
             echo d
             # Create the current branch in the destination repository
-            cd $CLONE_DIR
+            #cd $CLONE_DIR
 
-            #git fetch --all
-            git checkout  -b $BRANCH; if [ $? -eq 0 ];then git checkout $BRANCH; else git checkout -b $BRANCH;fi
-            git pull
+            #git checkout  -b $BRANCH; if [ $? -eq 0 ];then git checkout $BRANCH; else git checkout -b $BRANCH;fi
 
             # Cleaning all files on the destination repository
             git rm -r .

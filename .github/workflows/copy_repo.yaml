@@ -56,7 +56,7 @@ jobs:
             echo a
             git fetch --all
             echo b
-            BRANCH_EXISTS=$(git ls-remote --heads git@github.com:$DST_REPO.git $BRANCH|wc -l)
+            BRANCH_EXISTS=$(git checkout  -b $BRANCH)
             if [ $BRANCH_EXISTS -eq 0 ];then git checkout $BRANCH; else git checkout -b $BRANCH;fi
             echo c
             # Cleaning all files on the destination repository

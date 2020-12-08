@@ -36,7 +36,11 @@ jobs:
             USERNAME='ci'
             BRANCH=${{ steps.current_branch.outputs.branch }}
             SRC_COMMIT=$(git rev-parse HEAD)
-
+            
+            echo gsed 
+            whereis gsed
+            echo sed
+            whereis sed
             # Set the key to be able to clone the repo
             eval "$(ssh-agent -s)"
             echo "${{secrets.SSH_PRIVATE_KEY }}" > /tmp/repo_rsa

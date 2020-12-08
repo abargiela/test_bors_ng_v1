@@ -1,2 +1,6 @@
 .DS*
 .tes
+xayn_ai/android/src/main/jniLibs
+xayn_ai/ios/libxayn_ffi.a
+xayn_ai/ios/XaynAiPlugin.h
+xayn_ai/lib/xayn_ffi.dart

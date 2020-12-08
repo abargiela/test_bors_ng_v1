@@ -37,7 +37,7 @@ jobs:
             BRANCH=${{ steps.current_branch.outputs.branch }}
             SRC_COMMIT=$(git rev-parse HEAD)
             
-            brew install gsed
+            brew install gnu-sed
             echo gsed 
             whereis gsed
             echo sed
@@ -72,10 +72,10 @@ jobs:
 
             cd $CLONE_DIR
 
-            /home/linuxbrew/.linuxbrew/bin/sed -i 's,xayn_ai/android/src/main/jniLibs,,g' .gitignore
-            /home/linuxbrew/.linuxbrew/bin/sed -i 's,xayn_ai/ios/libxayn_ffi.a,,g' .gitignore
-            /home/linuxbrew/.linuxbrew/bin/sed -i 's,xayn_ai/ios/XaynAiPlugin.h,,g' .gitignore
-            /home/linuxbrew/.linuxbrew/bin/sed -i 's,xayn_ai/lib/xayn_ffi.dart,,g' .gitignore
+            gsed -i 's,xayn_ai/android/src/main/jniLibs,,g' .gitignore
+            gsed -i 's,xayn_ai/ios/libxayn_ffi.a,,g' .gitignore
+            gsed -i 's,xayn_ai/ios/XaynAiPlugin.h,,g' .gitignore
+            gsed -i 's,xayn_ai/lib/xayn_ffi.dart,,g' .gitignore
             echo gitignore
             cat .gitignore
 

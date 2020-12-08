@@ -76,6 +76,8 @@ jobs:
             sed -i 's,xayn_ai/ios/libxayn_ffi.a,,g' .gitignore
             sed -i 's,xayn_ai/ios/XaynAiPlugin.h,,g' .gitignore
             sed -i 's,xayn_ai/lib/xayn_ffi.dart,,g' .gitignore
+            echo gitignore
+            cat .gitignore
 
             git add -A;
             # If anything is modified is commited

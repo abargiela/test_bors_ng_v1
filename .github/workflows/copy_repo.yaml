@@ -37,6 +37,7 @@ jobs:
             BRANCH=${{ steps.current_branch.outputs.branch }}
             SRC_COMMIT=$(git rev-parse HEAD)
             
+            brew install gsed
             echo gsed 
             whereis gsed
             echo sed

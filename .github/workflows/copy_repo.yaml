@@ -63,8 +63,8 @@ jobs:
             cd - ;
             rsync -az * .gitignore  $CLONE_DIR \
               --exclude '.git' \
-              --exclude '.github' \
-              --delete;
+              --exclude '.github';
+
             cd $CLONE_DIR
             git add -A;
             # If anything is modified is commited

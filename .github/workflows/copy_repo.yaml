@@ -6,7 +6,7 @@ on: #workflow_dispatch
 jobs:
   copy_repo:
     name: copy-repo
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     timeout-minutes: 70
     steps:
 

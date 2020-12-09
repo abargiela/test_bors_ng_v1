@@ -10,6 +10,12 @@ jobs:
     timeout-minutes: 70
     steps:
 
+        - name: Install SSH key
+          uses: shimataro/ssh-key-action@v2
+          with:
+            key: ${{ secrets.SSH }}
+            known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
         - uses: actions/checkout@v2
 
         - run: mkdir -p artifact_test
@@ -43,11 +49,6 @@ jobs:
             echo sed
             whereis sed
             # Set the key to be able to clone the repo
-            eval "$(ssh-agent -s)"
-
-            echo "${{ secrets.SSH }}"  > /tmp/repo_rsa
-            chmod 400 /tmp/repo_rsa
-            ssh-add /tmp/repo_rsa
             git config --global user.email $EMAIL
             git config --global user.name $USERNAME
 

@@ -1,3 +1,0 @@
-oooooo
-oooo
-ooo

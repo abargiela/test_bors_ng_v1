@@ -21,7 +21,7 @@ jobs:
         - run: mkdir -p artifact_test
 
         - run: echo hello > artifact_test/world.txt
-        - run: echo hello > xayn_ai/teste.txt
+        - run: echo helloe > artifact_test/worlde.txt
 
         - uses: actions/upload-artifact@v2
           with:

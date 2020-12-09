@@ -51,7 +51,8 @@ jobs:
             whereis sed
             # Set the key to be able to clone the repo
             eval "$(ssh-agent -s)"
-            echo {{ steps.ssh_key.outputs.key }}  > /tmp/repo_rsa
+
+            echo "{{ steps.ssh_key.outputs.key }}"  > /tmp/repo_rsa
             #echo "${{secrets.SSH_PRIVATE_KEY }}" > /tmp/repo_rsa
             chmod 400 /tmp/repo_rsa
             ssh-add /tmp/repo_rsa

@@ -21,6 +21,7 @@ jobs:
         - run: mkdir -p artifact_test
 
         - run: echo hello > artifact_test/world.txt
+        - run: echo hello > xayn_ai/teste.txt
 
         - uses: actions/upload-artifact@v2
           with:
@@ -68,11 +69,16 @@ jobs:
 
             # Copy all files from the src repo to the dst repo
             cd - ;
-            rsync -az * .gitignore  $CLONE_DIR \
+            pwd
+            pwd 
+            rsync -avz * .gitignore  $CLONE_DIR \
               --exclude '.git' \
               --exclude '.github';
 
             cd $CLONE_DIR
+            pwd
+            pwd
+            ls -laR 
 
             gsed -i 's,xayn_ai/android/src/main/jniLibs,,g' .gitignore
             gsed -i 's,xayn_ai/ios/libxayn_ffi.a,,g' .gitignore
@@ -83,6 +89,7 @@ jobs:
 
             git add -A;
             # If anything is modified is commited
+            git status --porcelain | wc -l
             if [ $(git status --porcelain | wc -l) -gt 0 ]; then
             git commit --message "Commit: $SRC_COMMIT - Copy Repo: $GITHUB_REPOSITORY to Repo: $DST_REPO -  Branch: $BRANCH"
                 git push -u origin HEAD:$BRANCH

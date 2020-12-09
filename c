@@ -1,10 +1,2 @@
-ooodddddooooo
-iiii
-oo
-ooooo
-oidisidsid
-oooooo
-oooo
+ooosdsdsdsdsdssdsds
 ooo
-oooo
-oooooo

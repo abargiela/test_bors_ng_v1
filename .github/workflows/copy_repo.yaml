@@ -92,8 +92,8 @@ jobs:
             git status --porcelain | wc -l
             if [ $(git status --porcelain | wc -l) -gt 0 ]; then
             git commit --message "$(git log --format=%B -n1)
-https://github.com/xaynetwork/xain_ai/commit/$SRC_COMMIT
-https://github.com/xaynetwork/xain_ai/tree/$BRANCH"
+            https://github.com/xaynetwork/xain_ai/commit/$SRC_COMMIT
+            https://github.com/xaynetwork/xain_ai/tree/$BRANCH"
                 git push -u origin HEAD:$BRANCH
             fi
 

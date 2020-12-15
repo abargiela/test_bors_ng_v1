@@ -1,15 +1,20 @@
 name: number2
 
-on: #workflow_dispatch
-  push:
+#on: #workflow_dispatch
+#  push:
 
+on:
+  workflow_run:
+    workflows: ["number1"]
+    
 jobs:
   number2:
     name: number2
     runs-on: ubuntu-latest
-    timeout-minutes: 70
-    steps:
-
-        - name: reuse job 1
-          run: ${{ job.number1.steps}}
-
+    needs: [number1]
+#    timeout-minutes: 70
+#    steps:
+#
+#        - name: reuse job 1
+#          run: ${{ job.number1.steps}}
+#

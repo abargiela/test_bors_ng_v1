@@ -12,5 +12,3 @@ jobs:
 
         - name: reuse job 1
           run: ${{ jobs.number1 }}
-
-

@@ -11,4 +11,4 @@ jobs:
     steps:
 
         - name: reuse job 1
-          run: ${{ job.number1 }}
+          run: ${{ jobs.number1 }}

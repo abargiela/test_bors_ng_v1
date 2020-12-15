@@ -1,0 +1,34 @@
+name: test reuse
+
+on: #workflow_dispatch
+  push:
+
+jobs:
+  number1:
+    name: number1
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    steps:
+
+        - name: Install SSH key
+          uses: shimataro/ssh-key-action@v2
+          with:
+            key: ${{ secrets.BORS }}
+            known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+        - uses: actions/checkout@v2
+
+        - run: mkdir -p artifact_test
+
+        - run: echo hello > artifact_test/world.txt
+        - run: echo helloe > artifact_test/worlde.txt
+
+        - uses: actions/upload-artifact@v2
+          with:
+            name: artifact_test
+            path: artifact_test/world.txt
+
+        - name: Get current branch
+          shell: bash
+          run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+          id: current_branch

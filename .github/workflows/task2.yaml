@@ -7,7 +7,7 @@ jobs:
   number2:
     name: number2
     runs-on: ubuntu-latest
-    needs: ["number1"]
+    needs: [number1]
 #    timeout-minutes: 70
 #    steps:
 #

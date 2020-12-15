@@ -6,8 +6,8 @@ on: #workflow_dispatch
 jobs:
   copy_repo:
     name: number2
-#    runs-on: ubuntu-latest
-#    timeout-minutes: 70
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
     steps:
 
         - name: reuse job 1

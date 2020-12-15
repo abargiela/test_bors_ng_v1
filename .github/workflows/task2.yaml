@@ -4,7 +4,7 @@ on: #workflow_dispatch
   push:
 
 jobs:
-  copy_repo:
+  number2:
     name: number2
     runs-on: ubuntu-latest
     timeout-minutes: 70
@@ -12,3 +12,4 @@ jobs:
 
         - name: reuse job 1
           run: ${{ job.number1 }}
+

@@ -4,10 +4,10 @@ name: test reuse
 #  push:
 
 on:
-  pull_request:
-    types: [closed]
-    branches:
-      - "main"
+  delete
+#branches: 
+#  - "${GITHUB_REF##*/}"
+
 
 jobs:
   number1:
@@ -39,10 +39,7 @@ jobs:
           run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
           id: current_branch
 
-  numberX:
-    name: numberX
-    runs-on: ubuntu-latest
-    steps:
-      - name: list
-        run: ls 
-
+        - name: Delete remote branch 
+          run: | 
+            git clone https://github.com/abargiela/test_bors_ng_v1/
+            git push origin --delete  ${GITHUB_REF#refs/heads/})

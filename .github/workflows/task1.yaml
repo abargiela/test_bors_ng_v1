@@ -1,14 +1,7 @@
 name: test reuse
 
-#on: #workflow_dispatch
-#  push:
-
 on:
   push
-#delete
-#branches: 
-#  - "${GITHUB_REF##*/}"
-
 
 jobs:
   number1:
@@ -80,8 +73,3 @@ jobs:
                                   https://github.com/tree/$BRANCH"
                 git push -u origin HEAD:$BRANCH
             fi
-
-#        - name: Delete remote branch 
-#          run: | 
-#            git clone https://github.com/abargiela/test_bors_ng_v1/
-#            git push origin --delete  ${{ steps.current_branch.outputs.branch }}

@@ -1,0 +1,28 @@
+on: delete
+  #branches:
+  #  - "${GITHUB_REF##*/}"
+
+jobs:
+    delete_branch:
+      name: deleteBranch
+      runs-on: ubuntu-latest
+      steps:
+          - name: Install SSH key
+            uses: shimataro/ssh-key-action@v2
+            with:
+              key: ${{ secrets.BORS }}
+              known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+          - uses: actions/checkout@v2
+
+          - name: Get current branch
+            shell: bash
+            run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+            id: current_branch
+
+          - name: Delete remote branch
+            run: |
+              git clone git@github.com:abargiela/test_bors_ng_v1.git
+              cd test_bors_ng_v1
+              git push origin --delete  ${{ steps.current_branch.outputs.branch }}
+

@@ -73,23 +73,3 @@ jobs:
                                   https://github.com/tree/$BRANCH"
                 git push -u origin HEAD:$BRANCH
             fi
-
-on: delete
-#branches: 
-#  - "${GITHUB_REF##*/}"
-
-jobs:
-  number1:
-    name: number1
-    runs-on: ubuntu-latest
-    timeout-minutes: 70
-    steps:
-
-
-
-
-        - name: Delete remote branch 
-          run: | 
-            git clone git@github.com:abargiela/test_bors_ng_v1.git
-            cd test_bors_ng_v1
-            git push origin --delete  ${{ steps.current_branch.outputs.branch }}

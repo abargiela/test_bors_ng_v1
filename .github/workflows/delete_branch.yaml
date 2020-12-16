@@ -1,6 +1,9 @@
-on: delete
-  #branches:
-  #  - "${GITHUB_REF##*/}"
+name: deleteBranch 
+
+on: 
+  delete:
+    branches:
+      - "${GITHUB_REF##*/}"
 
 jobs:
     delete_branch:

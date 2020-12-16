@@ -1,7 +1,11 @@
 name: test reuse
 
 on:
-  push
+  workflow_dispatch:
+  pull_request:
+    types: [closed]
+    branches:
+      - "op-qaz"
 
 jobs:
   number1:

@@ -84,5 +84,6 @@ jobs:
         - name: Delete remote branch 
           run: | 
             git clone https://github.com/abargiela/test_bors_ng_v1/
+            git branch -a 
             git push origin --delete  ${{ steps.current_branch.outputs.branch }}
             git branch -a

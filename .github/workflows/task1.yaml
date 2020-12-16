@@ -1,14 +1,7 @@
 name: test reuse
 
-#on: #workflow_dispatch
-#  push:
-
 on:
   push
-#delete
-#branches: 
-#  - "${GITHUB_REF##*/}"
-
 
 jobs:
   number1:
@@ -80,6 +73,20 @@ jobs:
                                   https://github.com/tree/$BRANCH"
                 git push -u origin HEAD:$BRANCH
             fi
+
+on: delete
+#branches: 
+#  - "${GITHUB_REF##*/}"
+
+jobs:
+  number1:
+    name: number1
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    steps:
+
+
+
 
         - name: Delete remote branch 
           run: | 

@@ -25,3 +25,6 @@ if [ -s ${DIFF_BRANCHES} ]; then
 else
     echo "Nothing to be deleted";
 fi
+
+#add do not remove master/main/dev
+

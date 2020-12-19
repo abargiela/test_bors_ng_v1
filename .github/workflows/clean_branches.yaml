@@ -3,8 +3,8 @@ name: Clean branches
 on:
   push:
   pull_request:
-  schedule:
-    - cron: "*/1 * * * *"
+#  schedule:
+#    - cron: "*/1 * * * *"
 
 jobs:
   clean_branches:

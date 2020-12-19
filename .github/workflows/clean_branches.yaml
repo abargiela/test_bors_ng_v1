@@ -23,4 +23,4 @@ jobs:
             fetch-depth: 0
 
         - name: Clean branches
-          run: bash check_branches.sh
+          run: bash ./scripts/check_branches.sh

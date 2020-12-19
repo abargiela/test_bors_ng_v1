@@ -2,7 +2,7 @@ name: Clean branches
 
 on:
   schedule:
-    - cron: "*/1 * * * *"
+    - cron: "*/15 * * * *"
 
 jobs:
   clean_branches:

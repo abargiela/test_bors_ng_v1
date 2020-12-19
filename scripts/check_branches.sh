@@ -14,7 +14,7 @@ git ls-remote --heads ${SRC_REPO} | awk -F \/ '{print $3}' > ${SRC_BANCHES_LIST}
 git ls-remote --heads ${DST_REPO} | awk -F \/ '{print $3}' > ${DST_BANCHES_LIST}
 
 # check the difference between the dst_repo and src_repo and get only the difference
-diff -u  ${DST_BANCHES_LIST} ${SRC_BANCHES_LIST} | grep ^- | sed '1d' |awk -F ^- '{print $2}' > ${DIFF_BRANCHES}
+diff -u  ${DST_BANCHES_LIST} ${SRC_BANCHES_LIST} | grep ^- | sed '1d' | awk -F ^- '{print $2}' | egrep -v "master|^dev$"  > ${DIFF_BRANCHES}
 
 # If the diff file contains data the delete is executed because there is something to be removed.
 if [ -s ${DIFF_BRANCHES} ]; then

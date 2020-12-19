@@ -1,4 +1,4 @@
-oooooooo
+oooo
 dsdooosdsdooosdsdssdsdssdssdsdsdsddsdssdsdssdsdssdsdssdsdssodosdsdssdsdsdsdsdsooooooooiiiisdsddsdsooosdsdsdsdsdssdsds
 oo
 oo

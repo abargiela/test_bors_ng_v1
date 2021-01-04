@@ -4,14 +4,13 @@
 SRC_REPO="git@github.com:abargiela/test_bors.git"
 SRC_BANCHES_LIST="/tmp/src_branches.txt"
 # DST_REPO refers to the repository that receive a copy of the SRC_REPO.
-DST_REPO="git@github.com:abargiela/test_bors_ng_v1.git"
 DST_BANCHES_LIST="/tmp/dst_branches.txt"
 # Final file with the difference of branches between the dst_repo and the src_repo
 DIFF_BRANCHES="/tmp/diff_branches.txt"
 
 # list src_branches and dst_branches 
 git ls-remote --heads ${SRC_REPO} | awk -F \/ '{print $3}' > ${SRC_BANCHES_LIST}
-git ls-remote --heads ${DST_REPO} | awk -F \/ '{print $3}' > ${DST_BANCHES_LIST}
+git branch -a | awk -F \/ '{print $3}' | egrep -v "^HEAD|^$" > ${DST_BANCHES_LIST}
 
 # check the difference between the dst_repo and src_repo and get only the difference
 diff -u  ${DST_BANCHES_LIST} ${SRC_BANCHES_LIST} | grep ^- | sed '1d' | awk -F ^- '{print $2}' | egrep -v "master|^dev$"  > ${DIFF_BRANCHES}
